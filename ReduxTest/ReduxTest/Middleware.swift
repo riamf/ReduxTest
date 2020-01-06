@@ -26,10 +26,10 @@ extension M {
                     next(action)
                     return
                 }
-                GHClient().getUsers(phrase: fetchAction.phrase) { (result) in
+                GHClient().getUsers(filters: fetchAction.filters) { (result) in
                     switch result {
                     case .success(let items):
-                        dispatch(NewUsers(users: items.items, phrase: fetchAction.phrase))
+                        dispatch(NewUsers(users: items.items, filters: fetchAction.filters))
                     case .failure(_):
                         dispatch(ShowError())
                     }

@@ -60,8 +60,8 @@ class API {
 }
 
 class GHClient {
-    func getUsers(phrase: String = "", _ completion: @escaping (Result<Items, Error>) -> Void) {
-        API.shared.get(url: APIURL.users(phrase: phrase), completion)
+    func getUsers(filters: FiltersState, _ completion: @escaping (Result<Items, Error>) -> Void) {
+        API.shared.get(url: APIURL.users(phrase: filters.phrase), completion)
     }
 }
 

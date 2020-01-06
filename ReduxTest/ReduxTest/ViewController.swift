@@ -26,6 +26,10 @@ class ViewControllerCoordinator: Coordinator {
     func back() {
         environment.useCaseFactory.backFromSearch()
     }
+    
+    func showFilters() {
+        environment.useCaseFactory.showFilters()
+    }
 }
 
 struct ViewControllerSceneState: SceneState {
@@ -45,7 +49,7 @@ struct ViewControllerSceneState: SceneState {
     mutating func mutate(with action: Action) {
         switch action {
         case let newUsers as NewUsers:
-            if newUsers.phrase == phrase {
+            if newUsers.filters.phrase == filtersState.phrase {
                 self.users = newUsers.users
             }
         default:
@@ -54,12 +58,12 @@ struct ViewControllerSceneState: SceneState {
     }
     
     var users: [User] = []
-    var phrase: String = ""
+    var filtersState = FiltersState()
 }
 
 class ViewModel: NSObject {
     var users: [User] = []
-    var phrase: String = ""
+    var filtersState = FiltersState()
     
     func update(_ users: [User]) {
         self.users = users
@@ -86,7 +90,7 @@ class ViewController: UIViewController, StateChangeObserver, Coordinated {
     var scene: SceneState? {
         didSet {
             viewModel.users = (scene as? ViewControllerSceneState)?.users ?? viewModel.users
-            viewModel.phrase = (scene as? ViewControllerSceneState)?.phrase ?? viewModel.phrase
+            viewModel.filtersState.phrase = (scene as? ViewControllerSceneState)?.filtersState.phrase ?? viewModel.filtersState.phrase
         }
     }
     @IBOutlet private weak var table: UITableView!
@@ -104,7 +108,7 @@ class ViewController: UIViewController, StateChangeObserver, Coordinated {
     override func viewDidLoad() {
         super.viewDidLoad()
         table.dataSource = viewModel
-        environment.useCaseFactory.fetchUsers(phrase: viewModel.phrase)
+        environment.useCaseFactory.fetchUsers(filters: viewModel.filtersState)
         navigationItem.searchController = searchViewController
         searchViewController.obscuresBackgroundDuringPresentation = true
         searchViewController.searchBar.placeholder = "Search"
@@ -116,16 +120,27 @@ class ViewController: UIViewController, StateChangeObserver, Coordinated {
                                          target: self,
                                          action: #selector(backAction))
         navigationItem.leftBarButtonItem = backbutton
+        
+        let filter = UIBarButtonItem(title: "FILTER",
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(showFilters))
+        navigationItem.rightBarButtonItem = filter
     }
     
     @objc private func backAction() {
         (coordinator as? ViewControllerCoordinator)?.back()
     }
+    
+    @objc private func showFilters() {
+        (coordinator as? ViewControllerCoordinator)?.showFilters()
+    }
 }
 
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        environment.useCaseFactory.showNewSearch(with: searchBar.text ?? "")
+        environment.useCaseFactory.showNewSearch(with: FiltersState(order: .asc,
+                                                                    phrase: searchBar.text ?? ""))
     }
 }
 

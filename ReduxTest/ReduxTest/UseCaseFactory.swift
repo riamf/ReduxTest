@@ -14,19 +14,27 @@ class UseCaseFactory {
         environment.store.dispatch(TakeOffAction())
     }
     
-    func fetchUsers(phrase: String) {
-        environment.store.dispatch(FetchUsersAction(phrase: phrase))
+    func fetchUsers(filters: FiltersState) {
+        environment.store.dispatch(FetchUsersAction(filters: filters))
     }
     
     func showUsers() {
         environment.store.dispatch(ShowUsers())
     }
     
-    func showNewSearch(with phrase: String) {
-        environment.store.dispatch(NewSearch(phrase: phrase))
+    func showNewSearch(with filters: FiltersState) {
+        environment.store.dispatch(NewSearch(filters: filters))
     }
     
     func backFromSearch() {
         environment.store.dispatch(PopSearch())
+    }
+    
+    func showFilters() {
+        environment.store.dispatch(ShowFilters())
+    }
+    
+    func applyFilters(selected: FiltersState) {
+        environment.store.dispatch(ApplyFilters(state: selected))
     }
 }

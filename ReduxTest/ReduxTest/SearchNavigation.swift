@@ -53,11 +53,23 @@ class SearchNavigationControllerCoordinator: Coordinator, StateChangeObserver {
                 }
                 start += 1
             }
-        } else {
+        } else if myState.children.count < myOldState.children.count {
             var start = myOldState.children.count
             while start > myState.children.count {
+                _ = children.popLast()
                 (currentViewController as? UINavigationController)?.popViewController(animated: myState.children.count == (start - 1))
                 start -= 1
+            }
+        } else {
+            
+            if myState.presentingScene == nil && myOldState.presentingScene != nil {
+                currentViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
+            } else if let presenting = myState.presentingScene, myOldState.presentingScene == nil,
+                let coord = presenting.coordinatorForScene,
+                let ctrl = coord.start(myState) {
+                (ctrl as? Coordinated)?.coordinator = coord
+                children.append(coord)
+                currentViewController?.present(ctrl, animated: true, completion: nil)
             }
         }
     }
@@ -87,9 +99,11 @@ struct SearchNavigationControllerSceneState: SceneState {
             children.append(ViewControllerSceneState(children: [],
                                                      presentingScene: nil,
                                                      users: [],
-                                                     phrase: action.phrase))
+                                                     filtersState: action.filters))
         case _ as PopSearch:
             _ = children.popLast()
+        case _ as ShowFilters:
+            presentingScene =  FilterViewControllerState()
         default:
             for i in (0..<children.count) {
                 var tmp = children[i]

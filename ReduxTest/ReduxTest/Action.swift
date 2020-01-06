@@ -11,17 +11,23 @@ import Foundation
 protocol Action {}
 struct ShowUsers: Action {}
 struct FetchUsersAction: Action {
-    let phrase: String
+    let filters: FiltersState
 }
 struct TakeOffAction: Action {}
 struct HideError: Action {}
 struct ShowError: Action {}
 struct NewUsers: Action, Equatable {
     let users: [User]
-    let phrase: String
+    let filters: FiltersState
 }
 struct NewSearch: Action {
-    let phrase: String
+    let filters: FiltersState
 }
 
 struct PopSearch: Action {}
+struct ShowFilters: Action {
+    
+}
+struct ApplyFilters: Action {
+    let state: FiltersState
+}

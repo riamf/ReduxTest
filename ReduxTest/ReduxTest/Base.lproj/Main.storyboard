@@ -18,6 +18,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eXH-EH-aas">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="SgM-Re-PHQ" userLabel="Footer">
+                                    <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" id="hTu-Up-HBA">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -46,6 +51,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="127.90178571428571"/>
+        </scene>
+        <!--Filter View Controller-->
+        <scene sceneID="T59-Yo-g1c">
+            <objects>
+                <viewController restorationIdentifier="FilterViewController" storyboardIdentifier="FilterViewController" id="BaQ-ZC-Zlh" customClass="FilterViewController" customModule="ReduxTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mcy-R5-Eyj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ly3-xM-Jkq">
+                                <rect key="frame" x="8" y="44" width="398" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="jKc-Rb-qFK"/>
+                                </constraints>
+                                <state key="normal" title="Apply"/>
+                                <connections>
+                                    <action selector="applyFilters" destination="BaQ-ZC-Zlh" eventType="touchUpInside" id="aeD-7U-Ged"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dFG-E7-Ei6">
+                                <rect key="frame" x="183" y="176" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sortOrder" destination="BaQ-ZC-Zlh" eventType="touchUpInside" id="tET-kg-l5m"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Ly3-xM-Jkq" firstAttribute="top" secondItem="nBE-Tk-dnT" secondAttribute="top" id="6ZS-Yi-2QC"/>
+                            <constraint firstItem="nBE-Tk-dnT" firstAttribute="trailing" secondItem="Ly3-xM-Jkq" secondAttribute="trailing" constant="8" id="Npf-8F-Q4f"/>
+                            <constraint firstItem="Ly3-xM-Jkq" firstAttribute="leading" secondItem="nBE-Tk-dnT" secondAttribute="leading" constant="8" id="bLJ-ra-0P5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nBE-Tk-dnT"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QS7-be-EbT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1013" y="164"/>
         </scene>
     </scenes>
 </document>
