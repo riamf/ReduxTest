@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72C0980223C312E000D3B73F /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0980023C3120D00D3B73F /* SceneState.swift */; };
+		72C0980423C3135A00D3B73F /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0980323C3135A00D3B73F /* ErrorViewController.swift */; };
+		72C0980623C3194300D3B73F /* SearchNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0980523C3194300D3B73F /* SearchNavigation.swift */; };
 		72DF994C23ABE1F70006D0D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DF994B23ABE1F70006D0D8 /* AppDelegate.swift */; };
 		72DF995023ABE1F70006D0D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DF994F23ABE1F70006D0D8 /* ViewController.swift */; };
 		72DF995323ABE1F70006D0D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72DF995123ABE1F70006D0D8 /* Main.storyboard */; };
@@ -42,6 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		72C0980023C3120D00D3B73F /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
+		72C0980323C3135A00D3B73F /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
+		72C0980523C3194300D3B73F /* SearchNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigation.swift; sourceTree = "<group>"; };
 		72DF994823ABE1F70006D0D8 /* ReduxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReduxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72DF994B23ABE1F70006D0D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72DF994F23ABE1F70006D0D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +133,9 @@
 				72DF998623BA74A20006D0D8 /* Middleware.swift */,
 				72DF998823BA75190006D0D8 /* State.swift */,
 				72DF998A23BE58F00006D0D8 /* TabBarController.swift */,
+				72C0980023C3120D00D3B73F /* SceneState.swift */,
+				72C0980323C3135A00D3B73F /* ErrorViewController.swift */,
+				72C0980523C3194300D3B73F /* SearchNavigation.swift */,
 			);
 			path = ReduxTest;
 			sourceTree = "<group>";
@@ -288,6 +297,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72C0980623C3194300D3B73F /* SearchNavigation.swift in Sources */,
+				72C0980223C312E000D3B73F /* SceneState.swift in Sources */,
+				72C0980423C3135A00D3B73F /* ErrorViewController.swift in Sources */,
 				72DF995023ABE1F70006D0D8 /* ViewController.swift in Sources */,
 				72DF998723BA74A20006D0D8 /* Middleware.swift in Sources */,
 				72DF998323BA72F50006D0D8 /* Action.swift in Sources */,
@@ -473,6 +485,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EUR9M2AGH3;
 				INFOPLIST_FILE = ReduxTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -491,6 +504,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EUR9M2AGH3;
 				INFOPLIST_FILE = ReduxTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

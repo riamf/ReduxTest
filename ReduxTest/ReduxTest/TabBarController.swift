@@ -8,9 +8,11 @@
 
 import UIKit
 
-struct TabBarScene: Scene {
-    var children: [Scene] = []
-    var presentingScene: Scene?
+struct TabBarScene: SceneState {
+    var coordinatorForScene: Coordinator? { return nil }
+    
+    var children: [SceneState] = []
+    var presentingScene: SceneState?
     var viewControllerForScene: UIViewController {
         return TabBarController(scene: self)
     }
@@ -18,17 +20,13 @@ struct TabBarScene: Scene {
     mutating func mutate(with action: Action) {}
 }
 
-class TabBarController: UITabBarController {
-    var scene: TabBarScene? {
-        didSet {
-            
-        }
-    }
+class TabBarController: UITabBarController, Coordinated {
+    var scene: SceneState?
+    weak var coordinator: Coordinator?
     
-    convenience init(scene: TabBarScene?) {
+    convenience init(scene: SceneState?) {
         self.init(nibName: nil, bundle: nil)
         self.scene = scene
-        setupViewControllers()
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -37,12 +35,5 @@ class TabBarController: UITabBarController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-    }
-    
-    private func setupViewControllers() {
-        guard let scene = scene else { return }
-        viewControllers = scene.children.map {
-            $0.viewControllerForScene
-        }
     }
 }

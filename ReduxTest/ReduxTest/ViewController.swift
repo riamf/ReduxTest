@@ -8,9 +8,28 @@
 
 import UIKit
 
-struct ViewControllerScene: Scene {
-    var children: [Scene]
-    var presentingScene: Scene?
+class ViewControllerCoordinator: Coordinator {
+    var currentViewController: UIViewController?
+    var children: [Coordinator] = []
+    var parent: Coordinator?
+    
+    func start(_ state: SceneState?) -> UIViewController? {
+        let ctrl = ViewController.instantiate() as! ViewController
+        ctrl.coordinator = self
+        currentViewController = ctrl
+        
+        return ctrl
+    }
+}
+
+struct ViewControllerSceneState: SceneState {
+    var coordinatorForScene: Coordinator? {
+        let coordinator = ViewControllerCoordinator()
+        return coordinator
+    }
+    
+    var children: [SceneState]
+    var presentingScene: SceneState?
     var viewControllerForScene: UIViewController {
         let ctrl = ViewController.instantiate()
         (ctrl as? ViewController)?.scene = self
@@ -49,12 +68,14 @@ extension ViewModel: UITableViewDataSource {
     }
 }
 
-class ViewController: UIViewController, StateChangeObserver {
+class ViewController: UIViewController, StateChangeObserver, Coordinated {
     
+    weak var coordinator: Coordinator?
     var viewModel = ViewModel()
-    var scene: Scene? {
+    let searchViewController = UISearchController(searchResultsController: nil)
+    var scene: SceneState? {
         didSet {
-            viewModel.users = (scene as? ViewControllerScene)?.users ?? viewModel.users
+            viewModel.users = (scene as? ViewControllerSceneState)?.users ?? viewModel.users
         }
     }
     @IBOutlet private weak var table: UITableView!
@@ -65,8 +86,7 @@ class ViewController: UIViewController, StateChangeObserver {
     }
     
     func notify(_ state: State, oldState: State?) {
-        guard let strongScene = scene as? ViewControllerScene else { return }
-        scene = state.scene?.findScene(of: ViewControllerScene.self)
+        scene = state.scene?.findScene(of: ViewControllerSceneState.self)
         table.reloadData()
     }
 
@@ -74,35 +94,24 @@ class ViewController: UIViewController, StateChangeObserver {
         super.viewDidLoad()
         table.dataSource = viewModel
         environment.useCaseFactory.fetchUsers()
+        navigationItem.searchController = searchViewController
+        searchViewController.obscuresBackgroundDuringPresentation = true
+        searchViewController.searchResultsUpdater = self
+        searchViewController.searchBar.placeholder = "Search"
+        definesPresentationContext = true
     }
 }
-
 
 extension UIViewController {
-    static func instantiate() -> UIViewController {
+    static func instantiate<T: UIViewController>() -> T {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let id = String(describing: "\(self)")
-        return storyboard.instantiateViewController(identifier: id)
+        return storyboard.instantiateViewController(identifier: id) as! T
     }
 }
 
-class ErrorViewController: UIViewController {
-    override func loadView() {
-        view = UIView(frame: .zero)
-        let closeButton = UIButton(frame: .zero)
-        closeButton.setTitle("CLOSE", for: .normal)
-        view.addSubview(closeButton)
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            closeButton.topAnchor.constraint(equalTo: view.topAnchor),
-            closeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        closeButton.addTarget(self, action: #selector(closeError), for: .touchUpInside)
-    }
-    
-    @objc private func closeError() {
-        environment.store.dispatch(HideError())
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
     }
 }
