@@ -14,11 +14,17 @@ class ViewControllerCoordinator: Coordinator {
     var parent: Coordinator?
     
     func start(_ state: SceneState?) -> UIViewController? {
+        guard let state = state?.findScene(of: ViewControllerSceneState.self) else { return nil }
         let ctrl = ViewController.instantiate() as! ViewController
+        ctrl.scene = state
         ctrl.coordinator = self
         currentViewController = ctrl
         
         return ctrl
+    }
+    
+    func back() {
+        environment.useCaseFactory.backFromSearch()
     }
 }
 
@@ -39,17 +45,21 @@ struct ViewControllerSceneState: SceneState {
     mutating func mutate(with action: Action) {
         switch action {
         case let newUsers as NewUsers:
-            self.users = newUsers.users
+            if newUsers.phrase == phrase {
+                self.users = newUsers.users
+            }
         default:
             break
         }
     }
     
     var users: [User] = []
+    var phrase: String = ""
 }
 
 class ViewModel: NSObject {
     var users: [User] = []
+    var phrase: String = ""
     
     func update(_ users: [User]) {
         self.users = users
@@ -63,7 +73,7 @@ extension ViewModel: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = users[indexPath.row].login
+        cell.textLabel?.text = users[indexPath.row].name
         return cell
     }
 }
@@ -76,6 +86,7 @@ class ViewController: UIViewController, StateChangeObserver, Coordinated {
     var scene: SceneState? {
         didSet {
             viewModel.users = (scene as? ViewControllerSceneState)?.users ?? viewModel.users
+            viewModel.phrase = (scene as? ViewControllerSceneState)?.phrase ?? viewModel.phrase
         }
     }
     @IBOutlet private weak var table: UITableView!
@@ -93,12 +104,28 @@ class ViewController: UIViewController, StateChangeObserver, Coordinated {
     override func viewDidLoad() {
         super.viewDidLoad()
         table.dataSource = viewModel
-        environment.useCaseFactory.fetchUsers()
+        environment.useCaseFactory.fetchUsers(phrase: viewModel.phrase)
         navigationItem.searchController = searchViewController
         searchViewController.obscuresBackgroundDuringPresentation = true
-        searchViewController.searchResultsUpdater = self
         searchViewController.searchBar.placeholder = "Search"
+        searchViewController.searchBar.delegate = self
         definesPresentationContext = true
+        
+        let backbutton = UIBarButtonItem(title: "BACK",
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(backAction))
+        navigationItem.leftBarButtonItem = backbutton
+    }
+    
+    @objc private func backAction() {
+        (coordinator as? ViewControllerCoordinator)?.back()
+    }
+}
+
+extension ViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        environment.useCaseFactory.showNewSearch(with: searchBar.text ?? "")
     }
 }
 
@@ -107,11 +134,5 @@ extension UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let id = String(describing: "\(self)")
         return storyboard.instantiateViewController(identifier: id) as! T
-    }
-}
-
-extension ViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        
     }
 }

@@ -14,7 +14,9 @@ enum ServerError: Error {
 }
 
 enum APIURL {
-    static let users = URL(string: "https://api.github.com/users")!
+    static func users(phrase: String = "") -> URL {
+        return URL(string: "https://api.github.com/search/repositories?q=\(phrase)")!
+    }
 }
 
 class API {
@@ -31,7 +33,7 @@ class API {
     }
     
     func get<T: Codable>(url: URL, _ completion: @escaping (Result<T,Error>) -> Void) {
-        session.dataTask(with: APIURL.users) { [weak decoder] (data, response, error) in
+        session.dataTask(with: url) { [weak decoder] (data, response, error) in
             DispatchQueue.main.async {
                 if let urlresponse = response as? HTTPURLResponse,
                     (200...299).contains(urlresponse.statusCode),
@@ -58,11 +60,14 @@ class API {
 }
 
 class GHClient {
-    func getUsers(_ completion: @escaping (Result<[User], Error>) -> Void) {
-        API.shared.get(url: APIURL.users, completion)
+    func getUsers(phrase: String = "", _ completion: @escaping (Result<Items, Error>) -> Void) {
+        API.shared.get(url: APIURL.users(phrase: phrase), completion)
     }
 }
 
-struct User: Codable {
-    let login: String
+struct Items: Codable {
+    let items: [User]
+}
+struct User: Codable, Equatable {
+    let name: String
 }

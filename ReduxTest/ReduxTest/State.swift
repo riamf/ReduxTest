@@ -50,13 +50,3 @@ struct AppState: State {
         return children
     }
 }
-
-struct ViewControllerState: State {
-    var scene: SceneState?
-    var children: [State] = []
-    var users: [User] = []
-
-    mutating func setUsers(_ users: [User]) {
-        self.users = users
-    }
-}

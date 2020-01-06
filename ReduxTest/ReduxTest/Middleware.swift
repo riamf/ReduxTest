@@ -22,14 +22,14 @@ extension M {
     static let ViewController: Middleware<State> = { dispatch, getState in
         return { next in
             return { action in
-                guard action is FetchUsersAction, let state = getState() else {
+                guard let fetchAction = action as? FetchUsersAction, let state = getState() else {
                     next(action)
                     return
                 }
-                GHClient().getUsers { (result) in
+                GHClient().getUsers(phrase: fetchAction.phrase) { (result) in
                     switch result {
-                    case .success(let users):
-                        dispatch(NewUsers(users: users))
+                    case .success(let items):
+                        dispatch(NewUsers(users: items.items, phrase: fetchAction.phrase))
                     case .failure(_):
                         dispatch(ShowError())
                     }

@@ -19,7 +19,7 @@ protocol SceneState {
 extension SceneState {
     func findScene<T>(of kind: T.Type) -> T? {
         guard type(of: self) == kind else {
-            return children.compactMap({ $0.findScene(of: kind) }).first
+            return children.reversed().compactMap({ $0.findScene(of: kind) }).first
         }
         return self as? T
     }

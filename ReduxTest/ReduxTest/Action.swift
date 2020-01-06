@@ -10,10 +10,18 @@ import Foundation
 
 protocol Action {}
 struct ShowUsers: Action {}
-struct FetchUsersAction: Action {}
+struct FetchUsersAction: Action {
+    let phrase: String
+}
 struct TakeOffAction: Action {}
 struct HideError: Action {}
 struct ShowError: Action {}
-struct NewUsers: Action {
+struct NewUsers: Action, Equatable {
     let users: [User]
+    let phrase: String
 }
+struct NewSearch: Action {
+    let phrase: String
+}
+
+struct PopSearch: Action {}
