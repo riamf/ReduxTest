@@ -7,8 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		723FA0A123C9DC5900BD9948 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0A023C9DC5900BD9948 /* Redux.swift */; };
+		723FA0A323C9DC8C00BD9948 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0A223C9DC8C00BD9948 /* Actions.swift */; };
+		723FA0A523C9DCC200BD9948 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0A423C9DCC200BD9948 /* State.swift */; };
+		723FA0A723C9DCD800BD9948 /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0A623C9DCD800BD9948 /* SceneState.swift */; };
+		723FA0A923C9DD0400BD9948 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0A823C9DD0400BD9948 /* Coordinator.swift */; };
+		723FA0AC23C9DD4800BD9948 /* TabBarSceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0AB23C9DD4800BD9948 /* TabBarSceneState.swift */; };
+		723FA0AF23C9DD7E00BD9948 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0AE23C9DD7E00BD9948 /* TabBarCoordinator.swift */; };
+		723FA0B123C9DD9600BD9948 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0B023C9DD9600BD9948 /* TabBarController.swift */; };
+		723FA0B323C9E12200BD9948 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0B223C9E12200BD9948 /* Environment.swift */; };
+		723FA0B523C9E13500BD9948 /* UseCaseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0B423C9E13500BD9948 /* UseCaseFactory.swift */; };
+		723FA0B723C9E15200BD9948 /* Middlewear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0B623C9E15200BD9948 /* Middlewear.swift */; };
 		72C0981B23C9D2D400D3B73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0981A23C9D2D400D3B73F /* AppDelegate.swift */; };
-		72C0981D23C9D2D400D3B73F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0981C23C9D2D400D3B73F /* SceneDelegate.swift */; };
 		72C0981F23C9D2D400D3B73F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0981E23C9D2D400D3B73F /* ViewController.swift */; };
 		72C0982223C9D2D400D3B73F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72C0982023C9D2D400D3B73F /* Main.storyboard */; };
 		72C0982423C9D2D800D3B73F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72C0982323C9D2D800D3B73F /* Assets.xcassets */; };
@@ -35,9 +45,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		723FA0A023C9DC5900BD9948 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
+		723FA0A223C9DC8C00BD9948 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		723FA0A423C9DCC200BD9948 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		723FA0A623C9DCD800BD9948 /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
+		723FA0A823C9DD0400BD9948 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		723FA0AB23C9DD4800BD9948 /* TabBarSceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSceneState.swift; sourceTree = "<group>"; };
+		723FA0AE23C9DD7E00BD9948 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		723FA0B023C9DD9600BD9948 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		723FA0B223C9E12200BD9948 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		723FA0B423C9E13500BD9948 /* UseCaseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseFactory.swift; sourceTree = "<group>"; };
+		723FA0B623C9E15200BD9948 /* Middlewear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middlewear.swift; sourceTree = "<group>"; };
 		72C0981723C9D2D400D3B73F /* MuchReduxWow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuchReduxWow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C0981A23C9D2D400D3B73F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		72C0981C23C9D2D400D3B73F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		72C0981E23C9D2D400D3B73F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		72C0982123C9D2D400D3B73F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		72C0982323C9D2D800D3B73F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +96,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		723FA09F23C9DC3900BD9948 /* Redux */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0A023C9DC5900BD9948 /* Redux.swift */,
+				723FA0A223C9DC8C00BD9948 /* Actions.swift */,
+				723FA0A423C9DCC200BD9948 /* State.swift */,
+				723FA0A623C9DCD800BD9948 /* SceneState.swift */,
+				723FA0B223C9E12200BD9948 /* Environment.swift */,
+				723FA0B423C9E13500BD9948 /* UseCaseFactory.swift */,
+				723FA0B623C9E15200BD9948 /* Middlewear.swift */,
+			);
+			path = Redux;
+			sourceTree = "<group>";
+		};
+		723FA0AD23C9DD6F00BD9948 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0AE23C9DD7E00BD9948 /* TabBarCoordinator.swift */,
+				723FA0B023C9DD9600BD9948 /* TabBarController.swift */,
+				723FA0AB23C9DD4800BD9948 /* TabBarSceneState.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		72C0980E23C9D2D400D3B73F = {
 			isa = PBXGroup;
 			children = (
@@ -99,9 +143,11 @@
 		72C0981923C9D2D400D3B73F /* MuchReduxWow */ = {
 			isa = PBXGroup;
 			children = (
+				723FA0AD23C9DD6F00BD9948 /* TabBar */,
+				723FA09F23C9DC3900BD9948 /* Redux */,
 				72C0981A23C9D2D400D3B73F /* AppDelegate.swift */,
-				72C0981C23C9D2D400D3B73F /* SceneDelegate.swift */,
 				72C0981E23C9D2D400D3B73F /* ViewController.swift */,
+				723FA0A823C9DD0400BD9948 /* Coordinator.swift */,
 				72C0982023C9D2D400D3B73F /* Main.storyboard */,
 				72C0982323C9D2D800D3B73F /* Assets.xcassets */,
 				72C0982523C9D2D800D3B73F /* LaunchScreen.storyboard */,
@@ -259,9 +305,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				723FA0A923C9DD0400BD9948 /* Coordinator.swift in Sources */,
+				723FA0B323C9E12200BD9948 /* Environment.swift in Sources */,
+				723FA0A323C9DC8C00BD9948 /* Actions.swift in Sources */,
+				723FA0B123C9DD9600BD9948 /* TabBarController.swift in Sources */,
 				72C0981F23C9D2D400D3B73F /* ViewController.swift in Sources */,
 				72C0981B23C9D2D400D3B73F /* AppDelegate.swift in Sources */,
-				72C0981D23C9D2D400D3B73F /* SceneDelegate.swift in Sources */,
+				723FA0A123C9DC5900BD9948 /* Redux.swift in Sources */,
+				723FA0A723C9DCD800BD9948 /* SceneState.swift in Sources */,
+				723FA0AC23C9DD4800BD9948 /* TabBarSceneState.swift in Sources */,
+				723FA0B723C9E15200BD9948 /* Middlewear.swift in Sources */,
+				723FA0AF23C9DD7E00BD9948 /* TabBarCoordinator.swift in Sources */,
+				723FA0A523C9DCC200BD9948 /* State.swift in Sources */,
+				723FA0B523C9E13500BD9948 /* UseCaseFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
