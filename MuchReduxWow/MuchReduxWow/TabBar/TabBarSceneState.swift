@@ -11,7 +11,10 @@ struct TabBarSceneState: SceneState {
     
     init(state: SceneState?, action: Action) {
         if let _ = action as? TakeOffAction {
-            
+            children = [
+                HomeNavigationState(state: state, action: action),
+                ProfileNavigationState(state: state, action: action)
+            ]
         }
     }
     

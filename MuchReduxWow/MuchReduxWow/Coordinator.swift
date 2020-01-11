@@ -11,6 +11,21 @@ protocol Coordinator: class {
     
     init()
     @discardableResult func start(_ state: SceneState?) -> UIViewController?
+
+    func addChildren(to navigation: UINavigationController, state: SceneState)
+}
+
+extension Coordinator {
+    func addChildren(to navigation: UINavigationController, state: SceneState) {
+        let tmp = state.children.map { item -> (Coordinator, UIViewController?) in
+            let coord = item.coordinatorType.init()
+            coord.parent = self
+            return (coord, coord.start(state))
+        }
+        
+        children = tmp.compactMap { $0.0 }
+        navigation.setViewControllers(tmp.compactMap { $0.1 }, animated: false)
+    }
 }
 
 class MainCoordinator: Coordinator {
@@ -41,7 +56,9 @@ class MainCoordinator: Coordinator {
 extension MainCoordinator: StateChangeObserver {
     func notify(_ state: State, oldState: State?) {
         if currentViewController == nil {
-            window?.rootViewController = start(state.sceneState)
+            let ctrl = start(state.sceneState)
+            (ctrl as? Coordinated)?.coordinator = self
+            window?.rootViewController = ctrl
             currentViewController = window?.rootViewController
             window?.makeKeyAndVisible()
         }

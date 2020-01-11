@@ -18,6 +18,18 @@
 		723FA0B323C9E12200BD9948 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0B223C9E12200BD9948 /* Environment.swift */; };
 		723FA0B523C9E13500BD9948 /* UseCaseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0B423C9E13500BD9948 /* UseCaseFactory.swift */; };
 		723FA0B723C9E15200BD9948 /* Middlewear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0B623C9E15200BD9948 /* Middlewear.swift */; };
+		723FA0C123CA00D300BD9948 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0C023CA00D300BD9948 /* HomeViewController.swift */; };
+		723FA0C323CA013200BD9948 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0C223CA013200BD9948 /* HomeCoordinator.swift */; };
+		723FA0C523CA017E00BD9948 /* HomeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0C423CA017E00BD9948 /* HomeState.swift */; };
+		723FA0C823CA041D00BD9948 /* HomeNavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0C723CA041D00BD9948 /* HomeNavigationState.swift */; };
+		723FA0CA23CA045200BD9948 /* HomeNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0C923CA045200BD9948 /* HomeNavigationCoordinator.swift */; };
+		723FA0CC23CA04AD00BD9948 /* HomeNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0CB23CA04AD00BD9948 /* HomeNavigationViewController.swift */; };
+		723FA0D023CA05AB00BD9948 /* ProfileNaviagationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0CF23CA05AB00BD9948 /* ProfileNaviagationState.swift */; };
+		723FA0D223CA05D300BD9948 /* ProfileNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0D123CA05D300BD9948 /* ProfileNavigationCoordinator.swift */; };
+		723FA0D423CA060700BD9948 /* ProfileNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0D323CA060700BD9948 /* ProfileNavigationController.swift */; };
+		723FA0D623CA07F500BD9948 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0D523CA07F500BD9948 /* ProfileViewController.swift */; };
+		723FA0D823CA082400BD9948 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0D723CA082400BD9948 /* ProfileCoordinator.swift */; };
+		723FA0DA23CA087700BD9948 /* ProfileState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0D923CA087700BD9948 /* ProfileState.swift */; };
 		72C0981B23C9D2D400D3B73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0981A23C9D2D400D3B73F /* AppDelegate.swift */; };
 		72C0981F23C9D2D400D3B73F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0981E23C9D2D400D3B73F /* ViewController.swift */; };
 		72C0982223C9D2D400D3B73F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72C0982023C9D2D400D3B73F /* Main.storyboard */; };
@@ -56,6 +68,18 @@
 		723FA0B223C9E12200BD9948 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		723FA0B423C9E13500BD9948 /* UseCaseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseFactory.swift; sourceTree = "<group>"; };
 		723FA0B623C9E15200BD9948 /* Middlewear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middlewear.swift; sourceTree = "<group>"; };
+		723FA0C023CA00D300BD9948 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		723FA0C223CA013200BD9948 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		723FA0C423CA017E00BD9948 /* HomeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeState.swift; sourceTree = "<group>"; };
+		723FA0C723CA041D00BD9948 /* HomeNavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationState.swift; sourceTree = "<group>"; };
+		723FA0C923CA045200BD9948 /* HomeNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationCoordinator.swift; sourceTree = "<group>"; };
+		723FA0CB23CA04AD00BD9948 /* HomeNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationViewController.swift; sourceTree = "<group>"; };
+		723FA0CF23CA05AB00BD9948 /* ProfileNaviagationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNaviagationState.swift; sourceTree = "<group>"; };
+		723FA0D123CA05D300BD9948 /* ProfileNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationCoordinator.swift; sourceTree = "<group>"; };
+		723FA0D323CA060700BD9948 /* ProfileNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationController.swift; sourceTree = "<group>"; };
+		723FA0D523CA07F500BD9948 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		723FA0D723CA082400BD9948 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		723FA0D923CA087700BD9948 /* ProfileState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileState.swift; sourceTree = "<group>"; };
 		72C0981723C9D2D400D3B73F /* MuchReduxWow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuchReduxWow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C0981A23C9D2D400D3B73F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72C0981E23C9D2D400D3B73F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +144,48 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		723FA0BF23CA00C000BD9948 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0C623CA040F00BD9948 /* Navigation */,
+				723FA0C023CA00D300BD9948 /* HomeViewController.swift */,
+				723FA0C223CA013200BD9948 /* HomeCoordinator.swift */,
+				723FA0C423CA017E00BD9948 /* HomeState.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		723FA0C623CA040F00BD9948 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0C723CA041D00BD9948 /* HomeNavigationState.swift */,
+				723FA0C923CA045200BD9948 /* HomeNavigationCoordinator.swift */,
+				723FA0CB23CA04AD00BD9948 /* HomeNavigationViewController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		723FA0CD23CA059700BD9948 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0CE23CA059C00BD9948 /* Navigation */,
+				723FA0D523CA07F500BD9948 /* ProfileViewController.swift */,
+				723FA0D723CA082400BD9948 /* ProfileCoordinator.swift */,
+				723FA0D923CA087700BD9948 /* ProfileState.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		723FA0CE23CA059C00BD9948 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0CF23CA05AB00BD9948 /* ProfileNaviagationState.swift */,
+				723FA0D123CA05D300BD9948 /* ProfileNavigationCoordinator.swift */,
+				723FA0D323CA060700BD9948 /* ProfileNavigationController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		72C0980E23C9D2D400D3B73F = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +209,8 @@
 		72C0981923C9D2D400D3B73F /* MuchReduxWow */ = {
 			isa = PBXGroup;
 			children = (
+				723FA0CD23CA059700BD9948 /* Profile */,
+				723FA0BF23CA00C000BD9948 /* Home */,
 				723FA0AD23C9DD6F00BD9948 /* TabBar */,
 				723FA09F23C9DC3900BD9948 /* Redux */,
 				72C0981A23C9D2D400D3B73F /* AppDelegate.swift */,
@@ -308,16 +376,28 @@
 				723FA0A923C9DD0400BD9948 /* Coordinator.swift in Sources */,
 				723FA0B323C9E12200BD9948 /* Environment.swift in Sources */,
 				723FA0A323C9DC8C00BD9948 /* Actions.swift in Sources */,
+				723FA0C123CA00D300BD9948 /* HomeViewController.swift in Sources */,
+				723FA0CA23CA045200BD9948 /* HomeNavigationCoordinator.swift in Sources */,
 				723FA0B123C9DD9600BD9948 /* TabBarController.swift in Sources */,
 				72C0981F23C9D2D400D3B73F /* ViewController.swift in Sources */,
 				72C0981B23C9D2D400D3B73F /* AppDelegate.swift in Sources */,
 				723FA0A123C9DC5900BD9948 /* Redux.swift in Sources */,
 				723FA0A723C9DCD800BD9948 /* SceneState.swift in Sources */,
 				723FA0AC23C9DD4800BD9948 /* TabBarSceneState.swift in Sources */,
+				723FA0DA23CA087700BD9948 /* ProfileState.swift in Sources */,
+				723FA0C323CA013200BD9948 /* HomeCoordinator.swift in Sources */,
 				723FA0B723C9E15200BD9948 /* Middlewear.swift in Sources */,
 				723FA0AF23C9DD7E00BD9948 /* TabBarCoordinator.swift in Sources */,
 				723FA0A523C9DCC200BD9948 /* State.swift in Sources */,
+				723FA0D623CA07F500BD9948 /* ProfileViewController.swift in Sources */,
+				723FA0D823CA082400BD9948 /* ProfileCoordinator.swift in Sources */,
+				723FA0CC23CA04AD00BD9948 /* HomeNavigationViewController.swift in Sources */,
+				723FA0D223CA05D300BD9948 /* ProfileNavigationCoordinator.swift in Sources */,
+				723FA0D423CA060700BD9948 /* ProfileNavigationController.swift in Sources */,
+				723FA0D023CA05AB00BD9948 /* ProfileNaviagationState.swift in Sources */,
 				723FA0B523C9E13500BD9948 /* UseCaseFactory.swift in Sources */,
+				723FA0C823CA041D00BD9948 /* HomeNavigationState.swift in Sources */,
+				723FA0C523CA017E00BD9948 /* HomeState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
