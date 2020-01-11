@@ -17,6 +17,4 @@ struct TabBarSceneState: SceneState {
             ]
         }
     }
-    
-    mutating func mutate(with action: Action) {}
 }

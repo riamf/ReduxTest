@@ -13,8 +13,13 @@ struct AppState: State {
     var sceneState: SceneState
 
     static func appStateReducer(action: Action, state: State?) -> State {
-        return AppState(sceneState: sceneReducer(action: action,
-                                                 state: state?.sceneState))
+        guard var existingState = state else {
+            return AppState(sceneState: sceneReducer(action: action,
+                                                     state: state?.sceneState))
+        }
+        
+        existingState.sceneState.mutate(with: action)
+        return existingState
     }
     
     static func sceneReducer(action: Action, state: SceneState?) -> SceneState {

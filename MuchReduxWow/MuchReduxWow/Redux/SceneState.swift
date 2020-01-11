@@ -1,7 +1,7 @@
 import UIKit
 
 protocol SceneState {
-    var children: [SceneState] { get }
+    var children: [SceneState] { get set }
     var presentingScene: SceneState? { get }
     var coordinatorType: Coordinator.Type { get }
     init(state: SceneState?, action: Action)
@@ -23,7 +23,7 @@ extension SceneState {
         for i in (0..<children.count) {
             var tmp = children[i]
             tmp.mutate(with: action)
-//            children[i] = tmp
+            children[i] = tmp
         }
     }
 }
