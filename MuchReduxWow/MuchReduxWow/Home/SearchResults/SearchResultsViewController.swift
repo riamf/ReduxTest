@@ -16,6 +16,14 @@ class SearchResultsViewController: UIViewController, Coordinated {
         return table
     }()
     
+    lazy var searchController: UISearchController = {
+        let search = UISearchController(searchResultsController: nil)
+        search.obscuresBackgroundDuringPresentation = true
+        search.searchBar.placeholder = "Search"
+        search.searchBar.delegate = self
+        return search
+    }()
+    
     init(items: Items?) {
         super.init(nibName: nil, bundle: nil)
         self.items = items
@@ -44,6 +52,10 @@ class SearchResultsViewController: UIViewController, Coordinated {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(back))
+        
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
     }
     
     @objc private func back() {
@@ -65,4 +77,10 @@ extension SearchResultsViewController: UITableViewDataSource {
 
 extension SearchResultsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { }
+}
+
+extension SearchResultsViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        environment.useCaseFactory.search(filter: FiltersState(order: .asc, phrase: searchBar.text ?? ""))
+    }
 }
