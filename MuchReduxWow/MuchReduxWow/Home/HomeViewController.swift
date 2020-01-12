@@ -23,6 +23,9 @@ class HomeViewController: UIViewController, Coordinated {
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        environment.useCaseFactory.search(filter: FiltersState(order: .asc, phrase: searchBar.text ?? ""))
+        let phrase = searchBar.text ?? ""
+        environment.useCaseFactory.search(filter: FiltersState(order: .asc, phrase: phrase))
+        searchBar.text = ""
+        searchController.isActive = false
     }
 }
