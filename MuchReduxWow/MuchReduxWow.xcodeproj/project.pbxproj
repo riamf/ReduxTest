@@ -36,6 +36,9 @@
 		723FA0E523CA1D7100BD9948 /* SearchResultsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0E423CA1D7100BD9948 /* SearchResultsState.swift */; };
 		723FA0E723CA1D8C00BD9948 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0E623CA1D8C00BD9948 /* SearchResultsViewController.swift */; };
 		723FA0E923CA1DBB00BD9948 /* SearchResultsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0E823CA1DBB00BD9948 /* SearchResultsCoordinator.swift */; };
+		723FA0EB23CB0DB200BD9948 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0EA23CB0DB200BD9948 /* FiltersViewController.swift */; };
+		723FA0ED23CB0DDD00BD9948 /* FiltersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0EC23CB0DDD00BD9948 /* FiltersCoordinator.swift */; };
+		723FA0EF23CB0E5000BD9948 /* FilterSceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0EE23CB0E5000BD9948 /* FilterSceneState.swift */; };
 		72C0981B23C9D2D400D3B73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0981A23C9D2D400D3B73F /* AppDelegate.swift */; };
 		72C0981F23C9D2D400D3B73F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0981E23C9D2D400D3B73F /* ViewController.swift */; };
 		72C0982223C9D2D400D3B73F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72C0982023C9D2D400D3B73F /* Main.storyboard */; };
@@ -92,6 +95,9 @@
 		723FA0E423CA1D7100BD9948 /* SearchResultsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsState.swift; sourceTree = "<group>"; };
 		723FA0E623CA1D8C00BD9948 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		723FA0E823CA1DBB00BD9948 /* SearchResultsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsCoordinator.swift; sourceTree = "<group>"; };
+		723FA0EA23CB0DB200BD9948 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
+		723FA0EC23CB0DDD00BD9948 /* FiltersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersCoordinator.swift; sourceTree = "<group>"; };
+		723FA0EE23CB0E5000BD9948 /* FilterSceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSceneState.swift; sourceTree = "<group>"; };
 		72C0981723C9D2D400D3B73F /* MuchReduxWow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuchReduxWow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C0981A23C9D2D400D3B73F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72C0981E23C9D2D400D3B73F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +217,9 @@
 			isa = PBXGroup;
 			children = (
 				723FA0DF23CA12DB00BD9948 /* FilterState.swift */,
+				723FA0EA23CB0DB200BD9948 /* FiltersViewController.swift */,
+				723FA0EC23CB0DDD00BD9948 /* FiltersCoordinator.swift */,
+				723FA0EE23CB0E5000BD9948 /* FilterSceneState.swift */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -429,6 +438,8 @@
 				723FA0A723C9DCD800BD9948 /* SceneState.swift in Sources */,
 				723FA0AC23C9DD4800BD9948 /* TabBarSceneState.swift in Sources */,
 				723FA0E023CA12DB00BD9948 /* FilterState.swift in Sources */,
+				723FA0EF23CB0E5000BD9948 /* FilterSceneState.swift in Sources */,
+				723FA0EB23CB0DB200BD9948 /* FiltersViewController.swift in Sources */,
 				723FA0DA23CA087700BD9948 /* ProfileState.swift in Sources */,
 				723FA0E323CA149100BD9948 /* SearchResultsMiddlewear.swift in Sources */,
 				723FA0E923CA1DBB00BD9948 /* SearchResultsCoordinator.swift in Sources */,
@@ -445,6 +456,7 @@
 				723FA0D023CA05AB00BD9948 /* ProfileNaviagationState.swift in Sources */,
 				723FA0B523C9E13500BD9948 /* UseCaseFactory.swift in Sources */,
 				723FA0C823CA041D00BD9948 /* HomeNavigationState.swift in Sources */,
+				723FA0ED23CB0DDD00BD9948 /* FiltersCoordinator.swift in Sources */,
 				723FA0C523CA017E00BD9948 /* HomeState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

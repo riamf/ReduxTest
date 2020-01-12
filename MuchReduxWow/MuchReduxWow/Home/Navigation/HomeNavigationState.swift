@@ -4,6 +4,8 @@ struct HomeNavigationState: SceneState {
     
     enum Route {
         case popSearch
+        case presentFilters
+        case dismissFilters
     }
     
     var children: [SceneState] = []
@@ -27,16 +29,29 @@ struct HomeNavigationState: SceneState {
             children.append(SearchResultsState(state: nil, action: action))
         } else if let action = action as? PopAction,
                   let route = action.userInfo["route"] as? Route {
-            go(to: route)
+            go(to: route, action: action)
+        } else if let action = action as? PresentAction,
+            let route = action.userInfo["route"] as? Route {
+            go(to: route, action: action)
+        } else if let action = action as? DismissAction,
+                   let route = action.userInfo["route"] as? Route {
+                   go(to: route, action: action)
         }
     }
     
-    mutating private func go(to route: Route) {
+    mutating private func go(to route: Route, action: Action) {
         switch route {
         case .popSearch:
             if children.last is SearchResultsState {
                 children.removeLast()
             }
+        case .presentFilters:
+            let preselected = (children.last as? SearchResultsState)?.filter
+            presentingScene = FiltersSceneState(state: nil,
+                                                action: action,
+                                                preselected: preselected)
+        case .dismissFilters:
+            presentingScene = nil
         }
     }
 }

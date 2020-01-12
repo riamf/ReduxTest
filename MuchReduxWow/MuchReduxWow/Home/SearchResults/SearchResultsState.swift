@@ -2,6 +2,7 @@ import Foundation
 
 struct SearchResultsState: SceneState {
     var items: Items?
+    var filter: FiltersState?
     var children: [SceneState] = []
     var presentingScene: SceneState?
     var coordinatorType: Coordinator.Type {
@@ -11,6 +12,7 @@ struct SearchResultsState: SceneState {
     init(state: SceneState?, action: Action) {
         if let action = action as? NewDataAction {
             self.items = action.items
+            self.filter = action.filter
         }
     }
 }

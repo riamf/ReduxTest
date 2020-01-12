@@ -12,7 +12,7 @@ class SearchResultsCoordinator: Coordinator {
     func start(_ state: SceneState?) -> UIViewController? {
         guard let state = state?.of(of: SearchResultsState.self) else { return nil }
         
-        let ctrl = SearchResultsViewController(items: state.items)
+        let ctrl = SearchResultsViewController(items: state.items, filter: state.filter)
         ctrl.coordinator = self
         return ctrl
     }

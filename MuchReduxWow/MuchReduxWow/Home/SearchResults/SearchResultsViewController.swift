@@ -3,7 +3,8 @@ import UIKit
 class SearchResultsViewController: UIViewController, Coordinated {
     let cellId = "cell"
     weak var coordinator: Coordinator?
-    var items: Items?
+    private var items: Items?
+    private var filter: FiltersState?
     private var data: [Repository] {
         return items?.items ?? []
     }
@@ -24,9 +25,19 @@ class SearchResultsViewController: UIViewController, Coordinated {
         return search
     }()
     
-    init(items: Items?) {
+    lazy var filtersButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.backgroundColor = .white
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("Filters", for: .normal)
+        button.addTarget(self, action: #selector(showFilters), for: .touchUpInside)
+        return button
+    }()
+    
+    init(items: Items?, filter: FiltersState?) {
         super.init(nibName: nil, bundle: nil)
         self.items = items
+        self.filter = filter
     }
     
     required init?(coder: NSCoder) {
@@ -35,12 +46,21 @@ class SearchResultsViewController: UIViewController, Coordinated {
     
     override func loadView() {
         view = UIView(frame: .zero)
+        filtersButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(filtersButton)
+        NSLayoutConstraint.activate([
+            filtersButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            filtersButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            filtersButton.topAnchor.constraint(equalTo: view.topAnchor),
+            filtersButton.heightAnchor.constraint(equalToConstant: 40.0)
+        ])
+        
         table.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(table)
         NSLayoutConstraint.activate([
             table.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             table.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            table.topAnchor.constraint(equalTo: view.topAnchor),
+            table.topAnchor.constraint(equalTo: filtersButton.bottomAnchor),
             table.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
@@ -55,11 +75,15 @@ class SearchResultsViewController: UIViewController, Coordinated {
         
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
+        searchController.searchBar.text = filter?.phrase
     }
     
     @objc private func back() {
         environment.useCaseFactory.pop(userInfo: ["route": HomeNavigationState.Route.popSearch])
+    }
+    
+    @objc private func showFilters() {
+        environment.useCaseFactory.present(userInfo: ["route": HomeNavigationState.Route.presentFilters])
     }
 }
 

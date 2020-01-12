@@ -9,7 +9,8 @@ extension M {
                 GHClient().getUsers(filters: searchAction.filter) { (result) in
                     switch result {
                     case .success(let items):
-                        dispatch(NewDataAction(items: items))
+                        dispatch(NewDataAction(items: items,
+                                               filter: searchAction.filter))
                     case .failure(_):
                         break
                     }

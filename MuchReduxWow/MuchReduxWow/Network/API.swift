@@ -6,8 +6,9 @@ enum ServerError: Error {
 }
 
 enum APIURL {
-    static func users(phrase: String = "") -> URL {
-        return URL(string: "https://api.github.com/search/repositories?q=\(phrase)")!
+    static func users(filters: FiltersState) -> URL {
+        let string = "https://api.github.com/search/repositories?q=\(filters.phrase)&order=\(filters.order)&sort=stars".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        return URL(string: string)!
     }
 }
 
@@ -54,7 +55,7 @@ class API {
 class GHClient {
     func getUsers(filters: FiltersState,
                   _ completion: @escaping (Result<Items, Error>) -> Void) {
-        API.shared.get(url: APIURL.users(phrase: filters.phrase), completion)
+        API.shared.get(url: APIURL.users(filters: filters), completion)
     }
 }
 

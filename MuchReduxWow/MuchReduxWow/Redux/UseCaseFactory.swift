@@ -12,4 +12,12 @@ struct UseCaseFactory {
     func pop(userInfo: [String: Any] = [:]) {
         environment.store.dispatch(PopAction(userInfo: userInfo))
     }
+    
+    func present(userInfo: [String: Any] = [:]) {
+        environment.store.dispatch(PresentAction(userInfo: userInfo))
+    }
+    
+    func hideFilters(userInfo: [String: Any] = [:]) {
+        environment.store.dispatch(DismissAction(userInfo: userInfo))
+    }
 }
