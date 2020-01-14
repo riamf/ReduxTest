@@ -2,7 +2,7 @@ import UIKit
 
 protocol SceneState {
     var children: [SceneState] { get set }
-    var presentingScene: SceneState? { get }
+    var presentingScene: SceneState? { get set }
     var coordinatorType: Coordinator.Type { get }
     init(state: SceneState?, action: Action)
     
@@ -11,6 +11,9 @@ protocol SceneState {
 
 extension SceneState {
     func of<T>(of kind: T.Type) -> T? {
+        if let ps = presentingScene, type(of: ps) == kind {
+            return presentingScene as? T
+        }
         guard type(of: self) == kind else {
             return children.reversed().compactMap({ $0.of(of: kind) }).first
         }
@@ -20,6 +23,7 @@ extension SceneState {
 
 extension SceneState {
     mutating func mutate(with action: Action) {
+        presentingScene?.mutate(with: action)
         for i in (0..<children.count) {
             var tmp = children[i]
             tmp.mutate(with: action)

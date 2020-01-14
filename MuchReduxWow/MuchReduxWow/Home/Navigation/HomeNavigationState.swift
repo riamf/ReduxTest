@@ -25,6 +25,7 @@ struct HomeNavigationState: SceneState {
     }
     
     mutating func mutate(with action: Action) {
+        presentingScene?.mutate(with: action)
         if let action = action as? NewDataAction {
             children.append(SearchResultsState(state: nil, action: action))
         } else if let action = action as? PopAction,
@@ -46,7 +47,7 @@ struct HomeNavigationState: SceneState {
                 children.removeLast()
             }
         case .presentFilters:
-            let preselected = (children.last as? SearchResultsState)?.filter
+            let preselected = (children.last as? SearchResultsState)?.filter ?? FiltersState.default
             presentingScene = FiltersSceneState(state: nil,
                                                 action: action,
                                                 preselected: preselected)

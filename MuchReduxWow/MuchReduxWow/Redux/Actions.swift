@@ -21,3 +21,6 @@ struct PresentAction: Action {
 struct DismissAction: Action {
     let userInfo: [String: Any]
 }
+struct ChangeFilter: Action {
+    let filterState: FiltersState
+}

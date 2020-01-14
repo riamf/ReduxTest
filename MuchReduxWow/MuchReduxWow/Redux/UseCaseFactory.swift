@@ -20,4 +20,8 @@ struct UseCaseFactory {
     func hideFilters(userInfo: [String: Any] = [:]) {
         environment.store.dispatch(DismissAction(userInfo: userInfo))
     }
+    
+    func changeState(filterState: FiltersState) {
+        environment.store.dispatch(ChangeFilter(filterState: filterState))
+    }
 }
