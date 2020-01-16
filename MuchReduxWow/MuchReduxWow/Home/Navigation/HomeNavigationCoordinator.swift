@@ -58,6 +58,10 @@ extension HomeNavigationCoordinator: StateChangeObserver {
             currentViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
         } else if oldState.presentingScene == nil, newState.presentingScene != nil {
             presentNewOne()
+        } else if oldState.presentingScene != nil &&
+            newState.presentingScene != nil &&
+            currentViewController?.presentedViewController == nil {
+            presentNewOne()
         }
     }
 }

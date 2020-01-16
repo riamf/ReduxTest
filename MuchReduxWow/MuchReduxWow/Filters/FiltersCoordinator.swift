@@ -10,8 +10,7 @@ class FiltersCoordinator: Coordinator {
     
     func start(_ state: SceneState?) -> UIViewController? {
         guard let state = state as? FiltersSceneState else { return nil }
-        let ctrl = FiltersViewController()
-        ctrl.selected = state.preselected
+        let ctrl = FiltersViewController(selected: state.preselected)
         ctrl.coordinator = self
         return ctrl
     }

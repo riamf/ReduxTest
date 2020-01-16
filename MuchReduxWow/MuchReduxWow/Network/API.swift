@@ -7,8 +7,13 @@ enum ServerError: Error {
 
 enum APIURL {
     static func users(filters: FiltersState) -> URL {
-        let string = "https://api.github.com/search/repositories?q=\(filters.phrase)&order=\(filters.order)&sort=stars".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let phrase = filters.phrase + filters.languages.map({ "+language:\($0.name)" }).reduce("", +)
+        let string = "https://api.github.com/search/repositories?q=\(phrase)&order=\(filters.order)&sort=stars".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         return URL(string: string)!
+    }
+    
+    static func languages() -> URL {
+        return URL(string: "https://api.github.com/languages")!
     }
 }
 
@@ -53,9 +58,13 @@ class API {
 }
 
 class GHClient {
-    func getUsers(filters: FiltersState,
+    func getRepositories(filters: FiltersState,
                   _ completion: @escaping (Result<Items, Error>) -> Void) {
         API.shared.get(url: APIURL.users(filters: filters), completion)
+    }
+    
+    func getLanguages(_ completion: @escaping (Result<[Language], Error>) -> Void) {
+        API.shared.get(url: APIURL.languages(), completion)
     }
 }
 
@@ -64,5 +73,10 @@ struct Items: Codable {
 }
 
 struct Repository: Codable, Equatable {
+    let name: String
+    let language: String?
+}
+
+struct Language: Codable, Equatable {
     let name: String
 }

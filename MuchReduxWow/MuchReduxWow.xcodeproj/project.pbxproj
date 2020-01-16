@@ -39,6 +39,8 @@
 		723FA0EB23CB0DB200BD9948 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0EA23CB0DB200BD9948 /* FiltersViewController.swift */; };
 		723FA0ED23CB0DDD00BD9948 /* FiltersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0EC23CB0DDD00BD9948 /* FiltersCoordinator.swift */; };
 		723FA0EF23CB0E5000BD9948 /* FilterSceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0EE23CB0E5000BD9948 /* FilterSceneState.swift */; };
+		723FA0F123CF87D900BD9948 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0F023CF87D900BD9948 /* FiltersView.swift */; };
+		723FA0F323CF95C500BD9948 /* FiltersMiddlewear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0F223CF95C500BD9948 /* FiltersMiddlewear.swift */; };
 		72C0981B23C9D2D400D3B73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0981A23C9D2D400D3B73F /* AppDelegate.swift */; };
 		72C0981F23C9D2D400D3B73F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0981E23C9D2D400D3B73F /* ViewController.swift */; };
 		72C0982223C9D2D400D3B73F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72C0982023C9D2D400D3B73F /* Main.storyboard */; };
@@ -98,6 +100,8 @@
 		723FA0EA23CB0DB200BD9948 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		723FA0EC23CB0DDD00BD9948 /* FiltersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersCoordinator.swift; sourceTree = "<group>"; };
 		723FA0EE23CB0E5000BD9948 /* FilterSceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSceneState.swift; sourceTree = "<group>"; };
+		723FA0F023CF87D900BD9948 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
+		723FA0F223CF95C500BD9948 /* FiltersMiddlewear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersMiddlewear.swift; sourceTree = "<group>"; };
 		72C0981723C9D2D400D3B73F /* MuchReduxWow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuchReduxWow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C0981A23C9D2D400D3B73F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72C0981E23C9D2D400D3B73F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 				723FA0EA23CB0DB200BD9948 /* FiltersViewController.swift */,
 				723FA0EC23CB0DDD00BD9948 /* FiltersCoordinator.swift */,
 				723FA0EE23CB0E5000BD9948 /* FilterSceneState.swift */,
+				723FA0F023CF87D900BD9948 /* FiltersView.swift */,
+				723FA0F223CF95C500BD9948 /* FiltersMiddlewear.swift */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -445,9 +451,11 @@
 				723FA0E923CA1DBB00BD9948 /* SearchResultsCoordinator.swift in Sources */,
 				723FA0C323CA013200BD9948 /* HomeCoordinator.swift in Sources */,
 				723FA0B723C9E15200BD9948 /* Middlewear.swift in Sources */,
+				723FA0F323CF95C500BD9948 /* FiltersMiddlewear.swift in Sources */,
 				723FA0AF23C9DD7E00BD9948 /* TabBarCoordinator.swift in Sources */,
 				723FA0E723CA1D8C00BD9948 /* SearchResultsViewController.swift in Sources */,
 				723FA0A523C9DCC200BD9948 /* State.swift in Sources */,
+				723FA0F123CF87D900BD9948 /* FiltersView.swift in Sources */,
 				723FA0D623CA07F500BD9948 /* ProfileViewController.swift in Sources */,
 				723FA0D823CA082400BD9948 /* ProfileCoordinator.swift in Sources */,
 				723FA0CC23CA04AD00BD9948 /* HomeNavigationViewController.swift in Sources */,
@@ -632,6 +640,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MuchReduxWow/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -649,6 +658,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MuchReduxWow/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

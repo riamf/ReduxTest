@@ -14,6 +14,7 @@ class SearchResultsViewController: UIViewController, Coordinated {
         table.delegate = self
         table.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         table.tableFooterView = UIView(frame: .zero)
+        table.allowsSelection = false
         return table
     }()
     
@@ -94,17 +95,23 @@ extension SearchResultsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = data[indexPath.row].name
+        cell.textLabel?.text = data[indexPath.row].name + " : " + (data[indexPath.row].language ?? "")
         return cell
     }
 }
 
 extension SearchResultsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
 }
 
 extension SearchResultsViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        environment.useCaseFactory.search(filter: FiltersState(order: .asc, phrase: searchBar.text ?? ""))
+        let phrase = filter?.phrase ?? ""
+        environment.useCaseFactory.search(filter: FiltersState(order: filter?.order ?? .asc,
+                                                               phrase: searchBar.text ?? phrase,
+                                                               languages: filter?.languages ?? []))
+        searchController.isActive = false
+        searchBar.text = filter?.phrase
     }
 }

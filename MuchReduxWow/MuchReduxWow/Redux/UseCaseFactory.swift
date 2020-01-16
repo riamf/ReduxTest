@@ -21,7 +21,15 @@ struct UseCaseFactory {
         environment.store.dispatch(DismissAction(userInfo: userInfo))
     }
     
-    func changeState(filterState: FiltersState) {
-        environment.store.dispatch(ChangeFilter(filterState: filterState))
+    func changeState(order: Order?, phrase: String? = nil) {
+        environment.store.dispatch(ChangeFilter(order: order, phrase: phrase))
+    }
+    
+    func fetchLanguages() {
+        environment.store.dispatch(FetchLanguages())
+    }
+    
+    func selectLanguage(_ language: Language) {
+        environment.store.dispatch(SelectLanguage(language: language))
     }
 }

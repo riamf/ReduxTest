@@ -6,7 +6,7 @@ extension M {
                     next(action)
                     return
                 }
-                GHClient().getUsers(filters: searchAction.filter) { (result) in
+                GHClient().getRepositories(filters: searchAction.filter) { (result) in
                     switch result {
                     case .success(let items):
                         dispatch(NewDataAction(items: items,

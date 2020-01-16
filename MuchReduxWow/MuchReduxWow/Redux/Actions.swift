@@ -22,5 +22,15 @@ struct DismissAction: Action {
     let userInfo: [String: Any]
 }
 struct ChangeFilter: Action {
-    let filterState: FiltersState
+    var order: Order?
+    var phrase: String?
+}
+
+struct FetchLanguages: Action { }
+
+struct NewLanguages: Action {
+    let languages: [Language]
+}
+struct SelectLanguage: Action {
+    let language: Language
 }
