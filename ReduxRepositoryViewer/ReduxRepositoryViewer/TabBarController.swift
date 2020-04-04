@@ -11,7 +11,7 @@ class TabBarController: UITabBarController {
         repositoriesNavigation = RepositoriesNavigtion(environment)
         viewControllers = [
             repositoriesNavigation,
-            ProfileViewController(environment)
+            HistoryViewController(environment)
         ]
     }
 

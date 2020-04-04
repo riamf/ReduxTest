@@ -1,6 +1,12 @@
 import Foundation
 
 public protocol Action { }
+public struct LoadState<S>: Action {
+    let state: S
+    public init(_ state: S) {
+        self.state = state
+    }
+}
 
 public typealias DispatchFunction = (Action) -> Void
 public typealias Middleware<State> = (@escaping DispatchFunction, @escaping () -> State?)
@@ -12,6 +18,7 @@ public final class ReduxStore<S: State & Reducable> {
     var middleware: [Middleware<S>]
     var reducer: Reducer<S>
     var dispatchFunction: DispatchFunction!
+    public var stateKeeper = StateKeeper<S>()
     public var value: S {
         return state.value
     }
@@ -22,6 +29,7 @@ public final class ReduxStore<S: State & Reducable> {
         self.reducer = reducer
         self.middleware = middleware
         self.state = ObserverAdapter(state)
+        stateKeeper.add(state)
         self.dispatchFunction = middleware.reversed().reduce({ [unowned self] action in self._defaultDispatch(action: action) }, { dispatchFunction, middleware in
                 let dispatch: (Action) -> Void = { [weak self] in self?.dispatch($0) }
                 let getState = { [weak self] in self?.state.value }
@@ -34,14 +42,45 @@ public final class ReduxStore<S: State & Reducable> {
     }
 
     public func dispatch(_ action: Action) {
-        dispatchFunction(action)
+        stateKeeper.add(action)
+        if let loadAction = action as? LoadState<S> {
+            state.value = loadAction.state
+        } else {
+            dispatchFunction(action)
+        }
     }
 
     func _defaultDispatch(action: Action) {
         var hasChanged = false
         let newState = reducer(action, state.value, &hasChanged)
         if hasChanged {
+            stateKeeper.add(newState)
             state.value = newState
         }
+    }
+}
+
+public struct HistoryItem<T> {
+    public let value: T
+    public let timestamp: TimeInterval
+    
+    init(_ value: T) {
+        self.value = value
+        self.timestamp = Date().timeIntervalSince1970
+    }
+}
+
+public final class StateKeeper<S> {
+    public var history: [HistoryItem<S>] = []
+    public var actions: [HistoryItem<Action>] = []
+    
+    init() {}
+    
+    func add(_ action: Action) {
+        actions.append(HistoryItem(action))
+    }
+    
+    func add(_ state: S) {
+        history.append(HistoryItem(state))
     }
 }

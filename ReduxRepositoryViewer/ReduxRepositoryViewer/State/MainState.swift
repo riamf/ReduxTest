@@ -26,11 +26,11 @@ struct PopDetails: Action {}
 
 struct MainState: State, Reducable {
 
-    let profile: ProfileState
+    let history: HistoryState
     let repositories: RepositoriesNavigationState
 
     static func reduce(_ action: Action, _ state: MainState, _ hasChanged: inout Bool) -> MainState {
-        return MainState(profile: ProfileState.reduce(action, state.profile, &hasChanged),
+        return MainState(history: HistoryState.reduce(action, state.history, &hasChanged),
                          repositories: RepositoriesNavigationState.reduce(action,
                                                                           state.repositories,
                                                                           &hasChanged))
@@ -99,9 +99,13 @@ final class AppEnvironment {
         let repositoriesList = RepositoriesListState(repositories: [], since: 0)
         let navigation = RepositoriesNavigationState(repositoriesList: repositoriesList,
                                                      repositoryDetails: nil)
-        store = ReduxStore(state: MainState(profile: ProfileState(),
+        store = ReduxStore(state: MainState(history: HistoryState(),
                                             repositories: navigation),
                            middleware: [RepositoriesMiddleware.ghClient])
+    }
+
+    func load(_ state: MainState) {
+        store.dispatch(LoadState(state))
     }
 }
 
