@@ -18,37 +18,34 @@ class ReduxStore {
     var middleware: [Middleware<State>]
     var reducer: Reducer<State>
     var dispatchFunction: DispatchFunction!
-    
+
     init(state: State?,
          reducer: @escaping Reducer<State>,
          middleware: [Middleware<State>] = []) {
         self.reducer = reducer
         self.middleware = middleware
-        self.dispatchFunction = middleware.reversed().reduce(
-            { [unowned self] action in self._defaultDispatch(action: action) },
-            { dispatchFunction, middleware in
+        self.dispatchFunction = middleware.reversed().reduce({ [unowned self] action in self._defaultDispatch(action: action) }, { dispatchFunction, middleware in
             let dispatch: (Action) -> Void = { [weak self] in self?.dispatch($0) }
             let getState = { [weak self] in self?.state }
             return middleware(dispatch, getState)(dispatchFunction)
         })
-        
+
         if let state = state {
             self.state = state
         }
     }
-    
+
     func dispatch(_ action: Action) {
         dispatchFunction(action)
     }
-    
+
     func _defaultDispatch(action: Action) {
         let newState = reducer(action, state)
         state = newState
     }
-    
+
     func add(subscriber: StateChangeObserver) {
         subscribers
             .addPointer(Unmanaged.passUnretained(subscriber as AnyObject).toOpaque())
     }
 }
-

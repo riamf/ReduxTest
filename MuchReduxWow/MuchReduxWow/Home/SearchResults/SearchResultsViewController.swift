@@ -17,7 +17,7 @@ class SearchResultsViewController: UIViewController, Coordinated {
         table.allowsSelection = false
         return table
     }()
-    
+
     lazy var searchController: UISearchController = {
         let search = UISearchController(searchResultsController: nil)
         search.obscuresBackgroundDuringPresentation = true
@@ -25,7 +25,7 @@ class SearchResultsViewController: UIViewController, Coordinated {
         search.searchBar.delegate = self
         return search
     }()
-    
+
     lazy var filtersButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.backgroundColor = .white
@@ -34,17 +34,17 @@ class SearchResultsViewController: UIViewController, Coordinated {
         button.addTarget(self, action: #selector(showFilters), for: .touchUpInside)
         return button
     }()
-    
+
     init(items: Items?, filter: FiltersState?) {
         super.init(nibName: nil, bundle: nil)
         self.items = items
         self.filter = filter
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
     override func loadView() {
         view = UIView(frame: .zero)
         filtersButton.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +55,7 @@ class SearchResultsViewController: UIViewController, Coordinated {
             filtersButton.topAnchor.constraint(equalTo: view.topAnchor),
             filtersButton.heightAnchor.constraint(equalToConstant: 40.0)
         ])
-        
+
         table.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(table)
         NSLayoutConstraint.activate([
@@ -65,7 +65,7 @@ class SearchResultsViewController: UIViewController, Coordinated {
             table.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
@@ -73,16 +73,16 @@ class SearchResultsViewController: UIViewController, Coordinated {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(back))
-        
+
         navigationItem.searchController = searchController
         definesPresentationContext = true
         searchController.searchBar.text = filter?.phrase
     }
-    
+
     @objc private func back() {
         environment.useCaseFactory.pop(userInfo: ["route": HomeNavigationState.Route.popSearch])
     }
-    
+
     @objc private func showFilters() {
         environment.useCaseFactory.present(userInfo: ["route": HomeNavigationState.Route.presentFilters])
     }
@@ -92,7 +92,7 @@ extension SearchResultsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         cell.textLabel?.text = data[indexPath.row].name + " : " + (data[indexPath.row].language ?? "")

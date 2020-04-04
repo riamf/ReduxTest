@@ -2,7 +2,7 @@ import UIKit
 
 class HomeViewController: UIViewController, Coordinated {
     weak var coordinator: Coordinator?
-    
+
     lazy var searchController: UISearchController = {
         let search = UISearchController(searchResultsController: nil)
         search.obscuresBackgroundDuringPresentation = true
@@ -10,7 +10,7 @@ class HomeViewController: UIViewController, Coordinated {
         search.searchBar.delegate = self
         return search
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "1"

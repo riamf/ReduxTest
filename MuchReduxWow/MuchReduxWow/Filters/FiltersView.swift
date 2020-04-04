@@ -1,7 +1,7 @@
 import UIKit
 
 class FiltersView: UIView {
-    
+
     private(set) lazy var button: UIButton = {
         let btn = UIButton(frame: .zero)
         btn.backgroundColor = .white
@@ -9,19 +9,19 @@ class FiltersView: UIView {
         btn.setTitle("Apply", for: .normal)
         return btn
     }()
-    
+
     private(set) lazy var text: UILabel = {
         let label = UILabel(frame: .zero)
         label.text = "desc     asc"
         label.textColor = .black
         return label
     }()
-    
+
     private(set) lazy var orderSwitch: UISwitch = {
         let orderSwitch = UISwitch(frame: .zero)
         return orderSwitch
     }()
-    
+
     private(set) lazy var table: UITableView = {
         let table = UITableView(frame: .zero)
         table.tableFooterView = UIView(frame: .zero)
@@ -29,21 +29,21 @@ class FiltersView: UIView {
         table.isMultipleTouchEnabled = true
         return table
     }()
-    
+
     init(frame: CGRect, _ actionConfiguration: (FiltersView) -> Void) {
         super.init(frame: frame)
         setup()
         actionConfiguration(self)
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
-    
+
     private func setup() {
         backgroundColor = .cyan
-        
+
         button.translatesAutoresizingMaskIntoConstraints = false
         addSubview(button)
         orderSwitch.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +52,7 @@ class FiltersView: UIView {
         addSubview(text)
         table.translatesAutoresizingMaskIntoConstraints = false
         addSubview(table)
-        
+
         NSLayoutConstraint.activate([
             button.leadingAnchor.constraint(equalTo: leadingAnchor),
             button.trailingAnchor.constraint(equalTo: trailingAnchor),

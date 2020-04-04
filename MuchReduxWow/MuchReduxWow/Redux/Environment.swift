@@ -7,4 +7,3 @@ class AppEnvironment {
     let useCaseFactory = UseCaseFactory()
     var coordinator: Coordinator!
 }
-

@@ -6,8 +6,8 @@ struct ProfileState: SceneState {
     var coordinatorType: Coordinator.Type {
         return ProfileCoordinator.self
     }
-    
+
     init(state: SceneState?, action: Action) {
-        
+
     }
 }

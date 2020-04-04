@@ -24,37 +24,28 @@ struct ShowDetails: Action {
 
 struct PopDetails: Action {}
 
+struct MainState: State, Reducable {
 
-struct MainState: State {
-    typealias ActionType = MainStateAction
-    
     let profile: ProfileState
     let repositories: RepositoriesNavigationState
-    
-    func reduce(_ action: Action, _ state: MainState, _ hasChanged: inout Bool) -> MainState {
-        return MainState(profile: state.profile.reduce(action, state.profile, &hasChanged),
-                         repositories: state.repositories.reduce(action, state.repositories, &hasChanged))
-    }
-    
+
     static func reduce(_ action: Action, _ state: MainState, _ hasChanged: inout Bool) -> MainState {
-        return state.reduce(action, state, &hasChanged)
+        return MainState(profile: ProfileState.reduce(action, state.profile, &hasChanged),
+                         repositories: RepositoriesNavigationState.reduce(action,
+                                                                          state.repositories,
+                                                                          &hasChanged))
     }
 }
 
 struct ProfileState: State {
-    typealias ActionType = ProfileAction
     let title = "Profile"
-    func reduce(_ action: Action, _ state: ProfileState, _ hasChanged: inout Bool) -> ProfileState {
-        return state
-    }
 }
 
 struct RepositoriesNavigationState: State {
-    typealias ActionType = RepositoriesNavitationAction
     let repositoriesList: RepositoriesListState
     var repositoryDetails: RepositoryDetailsState?
-    
-    func reduce(_ action: Action, _ state: RepositoriesNavigationState, _ hasChanged: inout Bool) -> RepositoriesNavigationState {
+
+    static func reduce(_ action: Action, _ state: RepositoriesNavigationState, _ hasChanged: inout Bool) -> RepositoriesNavigationState {
         var details: RepositoryDetailsState? = state.repositoryDetails
         if let pushDetails = action as? ShowDetails {
             details = RepositoryDetailsState(repository: pushDetails.repository)
@@ -64,20 +55,19 @@ struct RepositoriesNavigationState: State {
             hasChanged = true
         }
         if let tmp = details {
-            details = tmp.reduce(action, tmp, &hasChanged)
+            details = RepositoryDetailsState.reduce(action, tmp, &hasChanged)
         }
-        
-        return RepositoriesNavigationState(repositoriesList: state.repositoriesList.reduce(action, state.repositoriesList, &hasChanged),
+
+        return RepositoriesNavigationState(repositoriesList: RepositoriesListState.reduce(action, state.repositoriesList, &hasChanged),
                                            repositoryDetails: details)
     }
 }
 
 struct RepositoriesListState: State {
-    typealias ActionType = RepositoriesListAction
     let repositories: [Repository]
     let since: Int
     let title = "Repositories"
-    func reduce(_ action: Action, _ state: RepositoriesListState, _ hasChanged: inout Bool) -> RepositoriesListState {
+    static func reduce(_ action: Action, _ state: RepositoriesListState, _ hasChanged: inout Bool) -> RepositoriesListState {
         switch action {
         case let action as NewRepositories:
             hasChanged = true
@@ -91,21 +81,18 @@ struct RepositoriesListState: State {
 }
 
 struct RepositoryDetailsState: State {
-    typealias ActionType = RepositoryDetailsStateAction
     let repository: Repository
-    func reduce(_ action: Action, _ state: RepositoryDetailsState, _ hasChanged: inout Bool) -> RepositoryDetailsState {
-        return state
-    }
 }
 
 final class AppEnvironment {
-    
+
     static let ghClient = GHClient()
- 
+
     let store: ReduxStore<MainState>
     init() {
         store = ReduxStore(state: MainState(profile: ProfileState(),
-                                            repositories: RepositoriesNavigationState(repositoriesList: RepositoriesListState(repositories: [], since: 0), repositoryDetails: nil)),
+                                            repositories: RepositoriesNavigationState(repositoriesList: RepositoriesListState(repositories: [], since: 0),
+                                                                                      repositoryDetails: nil)),
                            middleware: [M.ghClient])
     }
 }
@@ -118,7 +105,7 @@ struct M {
                     next(action)
                     return
                 }
-                
+
                 AppEnvironment.ghClient.getRepositories(downloadAction.since) { result in
                     switch result {
                     case .success(let repositories):

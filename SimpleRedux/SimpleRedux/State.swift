@@ -1,8 +1,6 @@
 import Foundation
 
 public protocol Reducable {
-    associatedtype ActionType
-    func reduce(_ action: Action, _ state: Self, _ hasChanged: inout Bool) -> Self
     static func reduce(_ action: Action, _ state: Self, _ hasChanged: inout Bool) -> Self
 }
 

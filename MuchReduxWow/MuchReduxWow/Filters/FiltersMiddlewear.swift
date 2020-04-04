@@ -12,7 +12,7 @@ extension M {
                     switch result {
                     case .success(let languages):
                         dispatch(NewLanguages(languages: languages))
-                    case .failure(_):
+                    case .failure:
                         break
                     }
                 }

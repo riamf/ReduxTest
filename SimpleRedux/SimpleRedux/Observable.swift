@@ -11,17 +11,17 @@ extension Disposal {
 }
 
 public final class Disposable {
-    
-    public let dispose: () -> ()
-    
-    init(_ dispose: @escaping () -> ()) {
+
+    public let dispose: () -> Void
+
+    init(_ dispose: @escaping () -> Void) {
         self.dispose = dispose
     }
-    
+
     deinit {
         dispose()
     }
-    
+
     public func add(to disposal: inout Disposal) {
         disposal.append(self)
     }
@@ -30,14 +30,14 @@ public final class Disposable {
 public typealias ImmutableObservable = Observable
 
 public class Observable<T> {
-    
+
     public typealias Observer = (T, T?) -> Void
-    
+
     private var observers: [Int: (Observer, DispatchQueue?)] = [:]
     private var uniqueID = (0...).makeIterator()
-    
+
     fileprivate let lock = NSRecursiveLock()
-    
+
     fileprivate var _value: T {
         didSet {
             let newValue = _value
@@ -46,11 +46,11 @@ public class Observable<T> {
             }
         }
     }
-    
+
     public var wrappedValue: T {
         return _value
     }
-    
+
     public var value: T {
         @available(*, deprecated, renamed: "wrappedValue")
         get {
@@ -63,49 +63,49 @@ public class Observable<T> {
             _value = newValue
         }
     }
-      
+
     fileprivate var _onDispose: () -> Void
-    
+
     public init(_ value: T, onDispose: @escaping () -> Void = {}) {
         _value = value
         _onDispose = onDispose
     }
-    
+
     public init(wrappedValue: T) {
         _value = wrappedValue
         _onDispose = {}
     }
-    
+
     public func observe(_ queue: DispatchQueue? = nil, _ observer: @escaping Observer) -> Disposable {
         lock.lock()
         defer { lock.unlock() }
-        
+
         let id = uniqueID.next()!
-        
+
         observers[id] = (observer, queue)
         notify(observer: observer, queue: queue, value: wrappedValue)
-        
+
         let disposable = Disposable { [weak self] in
             self?.observers[id] = nil
             self?._onDispose()
         }
-        
+
         return disposable
     }
-    
+
     public func removeAllObservers() {
         observers.removeAll()
     }
-    
+
     @available(*, deprecated, renamed: "asObservable")
     public func asImmutable() -> ImmutableObservable<T> {
         return self
     }
-    
+
     public func asObservable() -> Observable<T> {
         return self
     }
-    
+
     fileprivate func notify(observer: @escaping Observer, queue: DispatchQueue? = nil, value: T, oldValue: T? = nil) {
         if let queue = queue {
             queue.async {
@@ -119,7 +119,7 @@ public class Observable<T> {
 
 @propertyWrapper
 public class MutableObservable<T>: Observable<T> {
-    
+
     override public var wrappedValue: T {
         get {
             return _value
@@ -130,7 +130,7 @@ public class MutableObservable<T>: Observable<T> {
             _value = newValue
         }
     }
-    
+
     @available(*, deprecated, renamed: "wrappedValue")
     override public var value: T {
         get {
@@ -160,15 +160,15 @@ public class ObserverAdapter<T>: Observing {
             observable._value = newValue
         }
     }
-    
+
     init(_ value: T) {
         self.observable = Observable(value)
     }
-    
+
     public func onChange(_ observer: @escaping (T, T?) -> Void) {
         observable.observe(nil, observer).add(to: &disposal)
     }
-    
+
     deinit {
         disposal.removeAll()
     }

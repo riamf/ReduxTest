@@ -1,21 +1,21 @@
 import Foundation
 
 struct HomeNavigationState: SceneState {
-    
+
     enum Route {
         case popSearch
         case presentFilters
         case dismissFilters
     }
-    
+
     var children: [SceneState] = []
-    
+
     var presentingScene: SceneState?
-    
+
     var coordinatorType: Coordinator.Type {
         return HomeNavigationCoordinator.self
     }
-    
+
     init(state: SceneState?, action: Action) {
         if let _ = action as? TakeOffAction {
             children = [
@@ -23,7 +23,7 @@ struct HomeNavigationState: SceneState {
             ]
         }
     }
-    
+
     mutating func mutate(with action: Action) {
         presentingScene?.mutate(with: action)
         if let action = action as? NewDataAction {
@@ -39,7 +39,7 @@ struct HomeNavigationState: SceneState {
                    go(to: route, action: action)
         }
     }
-    
+
     mutating private func go(to route: Route, action: Action) {
         switch route {
         case .popSearch:

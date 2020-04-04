@@ -11,7 +11,7 @@ extension M {
                     case .success(let items):
                         dispatch(NewDataAction(items: items,
                                                filter: searchAction.filter))
-                    case .failure(_):
+                    case .failure:
                         break
                     }
                 }

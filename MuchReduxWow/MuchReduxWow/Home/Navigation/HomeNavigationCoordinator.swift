@@ -4,11 +4,11 @@ class HomeNavigationCoordinator: Coordinator {
     weak var currentViewController: UIViewController?
     weak var parent: Coordinator?
     var children: [Coordinator] = []
-    
+
     required init() {
         environment.store.add(subscriber: self)
     }
-    
+
     func start(_ state: SceneState?) -> UIViewController? {
         guard let state = state?.of(of: HomeNavigationState.self) else { return nil }
         let ctrl = HomeNavigationViewController()
@@ -20,11 +20,11 @@ class HomeNavigationCoordinator: Coordinator {
 }
 
 extension HomeNavigationCoordinator: StateChangeObserver {
-    
+
     func notify(_ state: State, oldState: State?) {
         guard let newChildren = state.sceneState.of(of: HomeNavigationState.self)?.children,
             let oldChildren = oldState?.sceneState.of(of: HomeNavigationState.self)?.children else { return }
-        
+
         let diff = newChildren.count - oldChildren.count
         if diff == 0 {
             // Presenting
@@ -44,7 +44,7 @@ extension HomeNavigationCoordinator: StateChangeObserver {
             children.removeLast()
         }
     }
-    
+
     func presenting(oldState: HomeNavigationState?, newState: HomeNavigationState?) {
         guard let oldState = oldState, let newState = newState else { return }
         let presentNewOne = { [weak currentViewController] in

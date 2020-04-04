@@ -5,7 +5,7 @@ protocol SceneState {
     var presentingScene: SceneState? { get set }
     var coordinatorType: Coordinator.Type { get }
     init(state: SceneState?, action: Action)
-    
+
     mutating func mutate(with action: Action)
 }
 

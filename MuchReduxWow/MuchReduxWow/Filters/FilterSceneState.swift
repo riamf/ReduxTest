@@ -9,12 +9,12 @@ struct FiltersSceneState: SceneState {
     }
     var preselected: FiltersState = FiltersState.default
     var languages: [Language] = []
-    
+
     init(state: SceneState?, action: Action) { }
     init(state: SceneState?, action: Action, preselected: FiltersState) {
         self.preselected = preselected
     }
-    
+
     mutating func mutate(with action: Action) {
         if let action = action as? ChangeFilter {
             preselected = FiltersState(order: action.order ?? preselected.order,

@@ -11,26 +11,26 @@ enum APIURL {
         let string = "https://api.github.com/search/repositories?q=\(phrase)&order=\(filters.order)&sort=stars".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         return URL(string: string)!
     }
-    
+
     static func languages() -> URL {
         return URL(string: "https://api.github.com/languages")!
     }
 }
 
 class API {
-    
+
     static let shared = API()
-    
+
     private var session: URLSession
     private var decoder: JSONDecoder
-    
+
     init(_ config: URLSessionConfiguration = URLSessionConfiguration.default) {
         self.session = URLSession(configuration: config)
         decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
-    
-    func get<T: Codable>(url: URL, _ completion: @escaping (Result<T,Error>) -> Void) {
+
+    func get<T: Codable>(url: URL, _ completion: @escaping (Result<T, Error>) -> Void) {
         session.dataTask(with: url) { [weak decoder] (data, response, error) in
             DispatchQueue.main.async {
                 if let urlresponse = response as? HTTPURLResponse,
@@ -62,7 +62,7 @@ class GHClient {
                   _ completion: @escaping (Result<Items, Error>) -> Void) {
         API.shared.get(url: APIURL.users(filters: filters), completion)
     }
-    
+
     func getLanguages(_ completion: @escaping (Result<[Language], Error>) -> Void) {
         API.shared.get(url: APIURL.languages(), completion)
     }

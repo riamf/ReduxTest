@@ -6,36 +6,36 @@ enum ServerError: Error {
 }
 
 public enum APIURL {
-    
+
     public static func languages() -> URL {
         return URL(string: "https://api.github.com/languages")!
     }
-    
+
     static func getRepositories(_ since: Int) -> URL {
         return URL(string: "https://api.github.com/repositories?since=\(since)")!
     }
 }
 
 class API {
-    
+
     static let shared = API()
-    
+
     private var session: URLSession
     private var decoder: JSONDecoder
-    
+
     private var token: String? {
         guard let path = Bundle.main.url(forResource: "token", withExtension: nil),
             let value = try? String(contentsOf: path, encoding: .utf8) else { return nil }
         return value
     }
-    
+
     init(_ config: URLSessionConfiguration = URLSessionConfiguration.default) {
         self.session = URLSession(configuration: config)
         decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
-    
-    func get<T: Codable>(url: URL, _ completion: @escaping (Result<T,Error>) -> Void) {
+
+    func get<T: Codable>(url: URL, _ completion: @escaping (Result<T, Error>) -> Void) {
         var request = URLRequest(url: url)
         if let token = token {
             request.setValue(token, forHTTPHeaderField: "Authorization")
@@ -71,11 +71,11 @@ public protocol GHCLientProtocol {
 
 public final class GHClient: GHCLientProtocol {
     private let api: API
-    
+
     public init() {
         self.api = API.shared
     }
-    
+
     public func getRepositories(_ since: Int = 0, _ completion: @escaping (Result<[Repository], Error>) -> Void) {
         api.get(url: APIURL.getRepositories(since), completion)
     }

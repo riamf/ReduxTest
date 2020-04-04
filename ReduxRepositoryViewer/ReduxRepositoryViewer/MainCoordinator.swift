@@ -12,7 +12,7 @@ class MainCoordinator: Coordinator {
     private var tabBar: TabBarController? {
         return currentViewController as? TabBarController
     }
-    
+
     init() {
         window = UIWindow(frame: UIScreen.main.bounds)
         environment = AppEnvironment()
@@ -20,12 +20,12 @@ class MainCoordinator: Coordinator {
             self?.resolve(state: new, old: old)
         }
     }
-    
+
     func start() {
         window?.rootViewController = currentViewController
         window?.makeKeyAndVisible()
     }
-    
+
     private func resolve(state: MainState, old: MainState?) {
         if currentViewController == nil {
             currentViewController = TabBarController(environment)
@@ -33,10 +33,10 @@ class MainCoordinator: Coordinator {
             resolveNavigation(state, old)
         }
     }
-    
+
     private func resolveNavigation(_ state: MainState, _ old: MainState?) {
         guard let old = old else { return }
-        
+
         if let _ = state.repositories.repositoryDetails,
             old.repositories.repositoryDetails == nil {
             // push details

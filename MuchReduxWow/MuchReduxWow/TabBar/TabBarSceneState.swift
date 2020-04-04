@@ -8,7 +8,7 @@ struct TabBarSceneState: SceneState {
     var coordinatorType: Coordinator.Type {
         return TabBarControllerCoordinator.self
     }
-    
+
     init(state: SceneState?, action: Action) {
         if let _ = action as? TakeOffAction {
             children = [
