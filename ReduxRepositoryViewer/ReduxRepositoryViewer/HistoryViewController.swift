@@ -12,7 +12,7 @@ class HistoryViewController: UIViewController {
         let result = DateFormatter()
         result.locale = Locale.current
         result.timeZone = TimeZone.current
-        result.dateFormat = "dd-mm-yyyy"
+        result.dateFormat = "HH:mm:ss"
         return result
     }()
 

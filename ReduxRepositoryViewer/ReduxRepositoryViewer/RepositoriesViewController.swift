@@ -1,40 +1,32 @@
 import UIKit
 import GHClient
 
-class RepositoriesNavigtion: UINavigationController {
-
-    var environment: AppEnvironment!
-
-    init(_ environment: AppEnvironment) {
-        super.init(nibName: nil, bundle: nil)
-        self.environment = environment
-        self.viewControllers = [
-            RepositoriesViewController(environment)
-        ]
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        environment.store.dispatch(DownloadRepositories(since: 0, isNextPage: false))
-    }
-}
-
-class RepositoriesViewController: UIViewController {
+class RepositoriesViewController: UIViewController, NavigationItemController {
 
     var environment: AppEnvironment!
     var tableView: UITableView!
+    lazy var searchController: UISearchController = {
+        let search = UISearchController(searchResultsController: nil)
+        search.obscuresBackgroundDuringPresentation = true
+        search.searchBar.placeholder = "Search"
+        search.searchBar.delegate = self
+        return search
+    }()
 
     var repositories: [Repository] {
-        environment.store.value.repositories.repositoriesList.repositories
+        return myState?.repositories ?? []
     }
 
-    init(_ environment: AppEnvironment) {
+    var myState: RepositoriesListState? {
+        return environment.store.value.repositories.list(for: uniqueId)
+    }
+
+    private var uniqueId: Int!
+
+    required init(_ environment: AppEnvironment, _ uniqueId: Int) {
         super.init(nibName: nil, bundle: nil)
         self.environment = environment
+        self.uniqueId = uniqueId
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -60,14 +52,19 @@ class RepositoriesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         self.environment.store.onChange { [weak self] new, _ in
-            self?.resolve(new.repositories.repositoriesList)
+            guard let uniqueId = self?.uniqueId,
+                let new = new.repositories.list(for: uniqueId) else { return }
+            self?.resolve(new)
         }
+        environment.store.dispatch(DownloadRepositories(since: 0, isNextPage: false))
     }
 
     private func resolve(_ state: RepositoriesListState) {
         title = state.title
+        searchController.searchBar.text = state.phrase
         tableView.reloadData()
     }
 }
@@ -87,7 +84,7 @@ extension RepositoriesViewController: UITableViewDataSource, UITableViewDelegate
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == repositories.count - 10 {
-            let since = environment.store.value.repositories.repositoriesList.since
+            guard let since = myState?.since else { return }
             environment.store.dispatch(DownloadRepositories(since: since, isNextPage: true))
         }
     }
@@ -95,5 +92,12 @@ extension RepositoriesViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         environment.store.dispatch(ShowDetails(repository: repositories[indexPath.row]))
+    }
+}
+
+extension RepositoriesViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let phrase = searchBar.text, !phrase.isEmpty else { return }
+        environment.store.dispatch(NewSearch(phrase: phrase))
     }
 }

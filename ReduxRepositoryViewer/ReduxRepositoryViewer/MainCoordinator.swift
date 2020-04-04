@@ -34,17 +34,17 @@ class MainCoordinator: Coordinator {
         }
     }
 
-    private func resolveNavigation(_ state: MainState, _ old: MainState?) {
+    private func resolveNavigation(_ new: MainState, _ old: MainState?) {
         guard let old = old else { return }
 
-        if state.repositories.repositoryDetails != nil &&
-            old.repositories.repositoryDetails == nil {
-            // push details
-            tabBar?.repositoriesNavigation.pushViewController(RepositoryDetailsViewController(environment),
-                                                                             animated: true)
-        } else if state.repositories.repositoryDetails == nil && old.repositories.repositoryDetails != nil {
-            // pop details
-            tabBar?.repositoriesNavigation.popViewController(animated: true)
+        if new.repositories.navigationStack.count > old.repositories.navigationStack.count {
+            if let last = new.repositories.navigationStack.last,
+                let ctrl = last.navigationItemControllerType.init(environment, last.uniqueId) as? UIViewController {
+                (currentViewController as? TabBarController)?
+                    .repositoriesNavigation.pushViewController(ctrl, animated: true)
+            }
+        } else if new.repositories.navigationStack.count < old.repositories.navigationStack.count {
+            (currentViewController as? TabBarController)?.repositoriesNavigation.popViewController(animated: true)
         }
     }
 }

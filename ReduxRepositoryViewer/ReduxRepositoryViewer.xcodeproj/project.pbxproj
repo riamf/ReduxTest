@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7230CC3F2438A2EC00286F84 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7230CC3E2438A2EC00286F84 /* HistoryViewController.swift */; };
+		7230CC412438B2AB00286F84 /* RepositoriesNavigtion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7230CC402438B2AB00286F84 /* RepositoriesNavigtion.swift */; };
 		726B5D7824339CA400B31A1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726B5D7724339CA400B31A1E /* AppDelegate.swift */; };
 		726B5D8124339CA700B31A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 726B5D8024339CA700B31A1E /* Assets.xcassets */; };
 		726B5D8424339CA700B31A1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 726B5D8224339CA700B31A1E /* LaunchScreen.storyboard */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		7230CC3E2438A2EC00286F84 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		7230CC402438B2AB00286F84 /* RepositoriesNavigtion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesNavigtion.swift; sourceTree = "<group>"; };
 		726B5D7424339CA400B31A1E /* ReduxRepositoryViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReduxRepositoryViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		726B5D7724339CA400B31A1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		726B5D8024339CA700B31A1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				726B5E0B24387D4E00B31A1E /* token */,
 				726B5E0E24387E3300B31A1E /* RepositoryDetailsViewController.swift */,
 				7230CC3E2438A2EC00286F84 /* HistoryViewController.swift */,
+				7230CC402438B2AB00286F84 /* RepositoriesNavigtion.swift */,
 			);
 			path = ReduxRepositoryViewer;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				726B5E082434FEFC00B31A1E /* RepositoriesViewController.swift in Sources */,
 				726B5E032434F25D00B31A1E /* TabBarController.swift in Sources */,
 				726B5D7824339CA400B31A1E /* AppDelegate.swift in Sources */,
+				7230CC412438B2AB00286F84 /* RepositoriesNavigtion.swift in Sources */,
 				726B5DA924339F3C00B31A1E /* MainCoordinator.swift in Sources */,
 				7230CC3F2438A2EC00286F84 /* HistoryViewController.swift in Sources */,
 			);

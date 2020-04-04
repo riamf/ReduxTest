@@ -1,7 +1,7 @@
 import UIKit
 import GHClient
 
-class RepositoryDetailsViewController: UIViewController {
+class RepositoryDetailsViewController: UIViewController, NavigationItemController {
     var environment: AppEnvironment!
 
     private var detailsView: DetailsView? {
@@ -9,12 +9,14 @@ class RepositoryDetailsViewController: UIViewController {
     }
 
     private var repository: Repository? {
-        return environment.store.value.repositories.repositoryDetails?.repository
+        return environment.store.value.repositories.details(for: uniqueId)?.repository
     }
+    private var uniqueId: Int!
 
-    init(_ environment: AppEnvironment) {
+    required init(_ environment: AppEnvironment, _ uniqueId: Int) {
         super.init(nibName: nil, bundle: nil)
         self.environment = environment
+        self.uniqueId = uniqueId
     }
 
     required init?(coder: NSCoder) {
