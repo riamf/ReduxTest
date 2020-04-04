@@ -37,7 +37,7 @@ class MainCoordinator: Coordinator {
     private func resolveNavigation(_ state: MainState, _ old: MainState?) {
         guard let old = old else { return }
 
-        if let _ = state.repositories.repositoryDetails,
+        if state.repositories.repositoryDetails != nil &&
             old.repositories.repositoryDetails == nil {
             // push details
             tabBar?.repositoriesNavigation.pushViewController(RepositoryDetailsViewController(environment),

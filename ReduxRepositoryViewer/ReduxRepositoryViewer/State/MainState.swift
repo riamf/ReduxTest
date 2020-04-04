@@ -45,7 +45,9 @@ struct RepositoriesNavigationState: State {
     let repositoriesList: RepositoriesListState
     var repositoryDetails: RepositoryDetailsState?
 
-    static func reduce(_ action: Action, _ state: RepositoriesNavigationState, _ hasChanged: inout Bool) -> RepositoriesNavigationState {
+    static func reduce(_ action: Action,
+                       _ state: RepositoriesNavigationState,
+                       _ hasChanged: inout Bool) -> RepositoriesNavigationState {
         var details: RepositoryDetailsState? = state.repositoryDetails
         if let pushDetails = action as? ShowDetails {
             details = RepositoryDetailsState(repository: pushDetails.repository)
@@ -58,7 +60,9 @@ struct RepositoriesNavigationState: State {
             details = RepositoryDetailsState.reduce(action, tmp, &hasChanged)
         }
 
-        return RepositoriesNavigationState(repositoriesList: RepositoriesListState.reduce(action, state.repositoriesList, &hasChanged),
+        return RepositoriesNavigationState(repositoriesList: RepositoriesListState.reduce(action,
+                                                                                          state.repositoriesList,
+                                                                                          &hasChanged),
                                            repositoryDetails: details)
     }
 }
@@ -67,7 +71,9 @@ struct RepositoriesListState: State {
     let repositories: [Repository]
     let since: Int
     let title = "Repositories"
-    static func reduce(_ action: Action, _ state: RepositoriesListState, _ hasChanged: inout Bool) -> RepositoriesListState {
+    static func reduce(_ action: Action,
+                       _ state: RepositoriesListState,
+                       _ hasChanged: inout Bool) -> RepositoriesListState {
         switch action {
         case let action as NewRepositories:
             hasChanged = true
@@ -90,14 +96,16 @@ final class AppEnvironment {
 
     let store: ReduxStore<MainState>
     init() {
+        let repositoriesList = RepositoriesListState(repositories: [], since: 0)
+        let navigation = RepositoriesNavigationState(repositoriesList: repositoriesList,
+                                                     repositoryDetails: nil)
         store = ReduxStore(state: MainState(profile: ProfileState(),
-                                            repositories: RepositoriesNavigationState(repositoriesList: RepositoriesListState(repositories: [], since: 0),
-                                                                                      repositoryDetails: nil)),
-                           middleware: [M.ghClient])
+                                            repositories: navigation),
+                           middleware: [RepositoriesMiddleware.ghClient])
     }
 }
 
-struct M {
+struct RepositoriesMiddleware {
     static let ghClient: Middleware<MainState> = { dispatch, getState in
         return { next in
             return { action in

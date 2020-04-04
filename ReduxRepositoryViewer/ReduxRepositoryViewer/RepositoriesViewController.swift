@@ -87,7 +87,8 @@ extension RepositoriesViewController: UITableViewDataSource, UITableViewDelegate
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == repositories.count - 10 {
-            environment.store.dispatch(DownloadRepositories(since: environment.store.value.repositories.repositoriesList.since, isNextPage: true))
+            let since = environment.store.value.repositories.repositoriesList.since
+            environment.store.dispatch(DownloadRepositories(since: since, isNextPage: true))
         }
     }
 

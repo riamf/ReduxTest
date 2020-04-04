@@ -33,7 +33,7 @@ class RepositoryDetailsViewController: UIViewController {
         environment.store.onChange { [weak detailsView, repository] _, _ in
             guard let repository = repository else { return }
             detailsView?.backgroundColor = .white
-            detailsView?.id.text = "\(repository.id)"
+            detailsView?.identifier.text = "\(repository.id)"
             detailsView?.owner.text = repository.owner.login
             detailsView?.desc.text = repository.description
         }
@@ -45,13 +45,13 @@ class RepositoryDetailsViewController: UIViewController {
 }
 
 class DetailsView: UIView {
-    var id: UILabel
+    var identifier: UILabel
     var owner: UILabel
     var desc: UILabel
 
     init() {
-        id = UILabel(frame: .zero)
-        id.font = UIFont.systemFont(ofSize: 11)
+        identifier = UILabel(frame: .zero)
+        identifier.font = UIFont.systemFont(ofSize: 11)
         owner = UILabel(frame: .zero)
         owner.font = UIFont.systemFont(ofSize: 16)
         desc = UILabel(frame: .zero)
@@ -60,18 +60,18 @@ class DetailsView: UIView {
         desc.numberOfLines = 0
         super.init(frame: .zero)
 
-        addSubview(id)
+        addSubview(identifier)
         addSubview(owner)
         addSubview(desc)
-        id.translatesAutoresizingMaskIntoConstraints = false
+        identifier.translatesAutoresizingMaskIntoConstraints = false
         owner.translatesAutoresizingMaskIntoConstraints = false
         desc.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            id.topAnchor.constraint(equalTo: topAnchor, constant: 106),
-            id.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            id.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            id.bottomAnchor.constraint(equalTo: owner.topAnchor, constant: -16),
+            identifier.topAnchor.constraint(equalTo: topAnchor, constant: 106),
+            identifier.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            identifier.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            identifier.bottomAnchor.constraint(equalTo: owner.topAnchor, constant: -16),
             owner.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             owner.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             owner.bottomAnchor.constraint(equalTo: desc.topAnchor, constant: -16),
