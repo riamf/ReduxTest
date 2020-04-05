@@ -44,6 +44,7 @@ public final class ReduxStore<S: State & Reducable> {
     public func dispatch(_ action: Action) {
         stateKeeper.add(action)
         if let loadAction = action as? LoadState<S> {
+            stateKeeper.add(loadAction.state)
             state.value = loadAction.state
         } else {
             dispatchFunction(action)

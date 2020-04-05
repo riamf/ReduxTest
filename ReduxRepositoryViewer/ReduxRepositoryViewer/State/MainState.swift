@@ -11,11 +11,23 @@ protocol RepositoryDetailsStateAction: Action {}
 struct DownloadRepositories: Action {
     let since: Int
     let isNextPage: Bool
+    let uniqueId: Int
+}
+
+struct ShowSearchResults: Action {
+    let repositories: [Repository]
+    let phrase: String
+    let uniqueId: Int
+    let page: Int
+    var isNextPage: Bool {
+        return page > 0
+    }
 }
 
 struct NewRepositories: RepositoriesListAction {
     let repositories: [Repository]
     let isNextPage: Bool
+    let uniqueId: Int
 }
 
 struct ShowDetails: Action {
@@ -23,10 +35,14 @@ struct ShowDetails: Action {
 }
 
 struct NewSearch: Action {
-    let phrase: String
+    var phrase: String
+    let page: Int
+    let isNextPage: Bool
+    let uniqueId: Int
 }
 
 struct PopDetails: Action {}
+struct PopResults: Action {}
 
 struct MainState: State, Reducable {
 
@@ -39,10 +55,6 @@ struct MainState: State, Reducable {
                                                                           state.repositories,
                                                                           &hasChanged))
     }
-}
-
-struct ProfileState: State {
-    let title = "Profile"
 }
 
 struct RepositoriesNavigationState: State {
@@ -59,18 +71,23 @@ struct RepositoriesNavigationState: State {
             type(of: $0).reduce(action, $0, &hasChanged)
         }
         switch action {
-        case let action as NewSearch:
-            let newRepositoriesList = RepositoriesListState(repositories: [],
-                                                            since: 0,
-                                                            phrase: action.phrase,
-                                                            uniqueId: uniqueID.next()!)
-            hasChanged = true
-            navigationStack.append(newRepositoriesList)
         case let action as ShowDetails:
             let details = RepositoryDetailsState(repository: action.repository, uniqueId: uniqueID.next()!)
             hasChanged = true
             navigationStack.append(details)
         case _ as PopDetails:
+            hasChanged = true
+            navigationStack.removeLast()
+        case let action as ShowSearchResults:
+            if !action.isNextPage {
+                let newRepositoriesList = RepositoriesListState(repositories: action.repositories,
+                                                                since: action.page,
+                                                                phrase: action.phrase,
+                                                                uniqueId: uniqueID.next()!)
+                hasChanged = true
+                navigationStack.append(newRepositoriesList)
+            }
+        case _ as PopResults:
             hasChanged = true
             navigationStack.removeLast()
         default:
@@ -105,23 +122,35 @@ protocol NavigationStackItem {
 struct RepositoriesListState: State, NavigationStackItem {
     let repositories: [Repository]
     let since: Int
-    let phrase: String
+    let phrase: String?
     let title = "Repositories"
     let uniqueId: Int
     var navigationItemControllerType: NavigationItemController.Type {
         return RepositoriesViewController.self
     }
+
     static func reduce(_ action: Action,
                        _ state: RepositoriesListState,
                        _ hasChanged: inout Bool) -> RepositoriesListState {
         switch action {
         case let action as NewRepositories:
-            hasChanged = true
-            let repositories = action.isNextPage ? state.repositories + action.repositories : action.repositories
-            return RepositoriesListState(repositories: repositories,
-                                         since: action.repositories.last?.id ?? 0,
-                                         phrase: state.phrase,
-                                         uniqueId: state.uniqueId)
+            if action.uniqueId == state.uniqueId {
+                hasChanged = true
+                let repositories = action.isNextPage ? state.repositories + action.repositories : action.repositories
+                return RepositoriesListState(repositories: repositories,
+                                             since: action.repositories.last?.id ?? 0,
+                                             phrase: state.phrase,
+                                             uniqueId: state.uniqueId)
+            }
+        case let action as ShowSearchResults:
+            if action.isNextPage, action.uniqueId == state.uniqueId {
+                hasChanged = true
+                let repositories = state.repositories + action.repositories
+                return RepositoriesListState(repositories: repositories,
+                                             since: action.page,
+                                             phrase: state.phrase,
+                                             uniqueId: state.uniqueId)
+            }
         default:
             break
         }
@@ -139,6 +168,7 @@ struct RepositoriesListState: State, NavigationStackItem {
 struct RepositoryDetailsState: State, NavigationStackItem {
     let repository: Repository
     let uniqueId: Int
+
     var navigationItemControllerType: NavigationItemController.Type {
         return RepositoryDetailsViewController.self
     }
@@ -156,11 +186,11 @@ final class AppEnvironment {
 
     let store: ReduxStore<MainState>
     init() {
-        let repositoriesList = RepositoriesListState(repositories: [], since: 0, phrase: "", uniqueId: 0)
+        let repositoriesList = RepositoriesListState(repositories: [], since: 0, phrase: nil, uniqueId: 0)
         let navigation = RepositoriesNavigationState(navigationStack: [repositoriesList])
         store = ReduxStore(state: MainState(history: HistoryState(),
                                             repositories: navigation),
-                           middleware: [RepositoriesMiddleware.ghClient])
+                           middleware: [RepositoriesMiddleware.ghClient, RepositoriesMiddleware.ghSearchClient])
     }
 
     func load(_ state: MainState) {
@@ -169,6 +199,29 @@ final class AppEnvironment {
 }
 
 struct RepositoriesMiddleware {
+    static let ghSearchClient: Middleware<MainState> = { dispatch, getState in
+        return { next in
+            return { action in
+                guard let searchAction = action as? NewSearch else {
+                    next(action)
+                    return
+                }
+
+                AppEnvironment.ghClient.searchRepositories(searchAction.phrase, searchAction.page) { result in
+                    switch result {
+                    case .success(let repositories):
+                        dispatch(ShowSearchResults(repositories: repositories,
+                                                   phrase: searchAction.phrase,
+                                                   uniqueId: searchAction.uniqueId,
+                                                   page: searchAction.page))
+                    case .failure(let error):
+                        break
+                    }
+                }
+            }
+
+        }
+    }
     static let ghClient: Middleware<MainState> = { dispatch, getState in
         return { next in
             return { action in
@@ -180,7 +233,9 @@ struct RepositoriesMiddleware {
                 AppEnvironment.ghClient.getRepositories(downloadAction.since) { result in
                     switch result {
                     case .success(let repositories):
-                        dispatch(NewRepositories(repositories: repositories, isNextPage: downloadAction.isNextPage))
+                        dispatch(NewRepositories(repositories: repositories,
+                                                 isNextPage: downloadAction.isNextPage,
+                                                 uniqueId: downloadAction.uniqueId))
                     case .failure(let error):
                         break
                     }

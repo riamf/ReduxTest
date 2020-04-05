@@ -38,13 +38,21 @@ class MainCoordinator: Coordinator {
         guard let old = old else { return }
 
         if new.repositories.navigationStack.count > old.repositories.navigationStack.count {
-            if let last = new.repositories.navigationStack.last,
-                let ctrl = last.navigationItemControllerType.init(environment, last.uniqueId) as? UIViewController {
-                (currentViewController as? TabBarController)?
-                    .repositoriesNavigation.pushViewController(ctrl, animated: true)
+            let start = old.repositories.navigationStack.count
+            let end = new.repositories.navigationStack.count
+            for idx in (start..<end) {
+                let next = new.repositories.navigationStack[idx]
+                if let ctrl = next.navigationItemControllerType.init(environment, next.uniqueId) as? UIViewController {
+                    (currentViewController as? TabBarController)?
+                    .repositoriesNavigation.pushViewController(ctrl, animated: idx == (end - 1))
+                }
             }
         } else if new.repositories.navigationStack.count < old.repositories.navigationStack.count {
-            (currentViewController as? TabBarController)?.repositoriesNavigation.popViewController(animated: true)
+            let diff = old.repositories.navigationStack.count - new.repositories.navigationStack.count
+            (0..<diff).forEach {
+                (currentViewController as? TabBarController)?
+                    .repositoriesNavigation.popViewController(animated: $0 == (diff - 1))
+            }
         }
     }
 }

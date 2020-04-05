@@ -72,7 +72,20 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("don't worry everything is fixable")
         }
         let date = Date(timeIntervalSince1970: history[indexPath.row].timestamp)
-        cell.textLabel?.text = dateFormatter.string(from: date) + " " + "\(history[indexPath.row].value)"
+        cell.textLabel?.lineBreakMode = .byWordWrapping
+        cell.textLabel?.numberOfLines = 0
+        let state = history[indexPath.row].value
+        let navStackDesc = state.repositories.navigationStack.map({ itm -> String in
+            var repos = ""
+            if let val = itm as? RepositoriesListState {
+                repos += "repositories: \(val.repositories.count), phrase: \(val.phrase ?? "nil")"
+            }
+            return "\(type(of: itm)), \(itm.uniqueId), " + repos + ""
+        })
+        let shortDescription = "\(type(of: state))\n"
+            + "navigation stack count: \(state.repositories.navigationStack.count)\n"
+            + "\n\(navStackDesc.map({"\($0)\n"}).reduce("", +))\n"
+        cell.textLabel?.text = dateFormatter.string(from: date) + "\n" + "\(shortDescription)"
         return cell
     }
 
@@ -84,6 +97,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         alert.addAction(UIAlertAction(title: "Load", style: .default, handler: { [weak self] _ in
             guard let environment = self?.environment, let history = self?.history else { return }
             environment.load(history[indexPath.row].value)
+            self?.tableView.reloadData()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)

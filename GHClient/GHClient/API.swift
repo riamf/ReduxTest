@@ -14,6 +14,13 @@ public enum APIURL {
     static func getRepositories(_ since: Int) -> URL {
         return URL(string: "https://api.github.com/repositories?since=\(since)")!
     }
+
+    static func searchRepositories(_ query: String, _ page: Int) -> URL {
+        if let escaped = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            return URL(string: "https://api.github.com/search/repositories?q=\(escaped)&page=\(page)")!
+        }
+        return URL(string: "https://api.github.com/search/repositories?q=\(query)&page=\(page)")!
+    }
 }
 
 class API {
@@ -79,6 +86,18 @@ public final class GHClient: GHCLientProtocol {
     public func getRepositories(_ since: Int = 0, _ completion: @escaping (Result<[Repository], Error>) -> Void) {
         api.get(url: APIURL.getRepositories(since), completion)
     }
+
+    public func searchRepositories(_ query: String, _ page: Int, _ completion: @escaping (Result<[Repository], Error>) -> Void) {
+        let handler: (Result<SearchResults, Error>) -> Void = { result in
+            switch result {
+            case .success(let searchResult):
+                completion(.success(searchResult.items))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+        api.get(url: APIURL.searchRepositories(query, page), handler)
+    }
 }
 
 public struct Repository: Codable {
@@ -90,4 +109,8 @@ public struct Repository: Codable {
 
 public struct Owner: Codable {
     public let login: String
+}
+
+struct SearchResults: Codable {
+    let items: [Repository]
 }
