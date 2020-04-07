@@ -3,9 +3,11 @@ import GHClient
 
 class RepositoriesViewController: UIViewController, NavigationItemController {
 
-    var environment: AppEnvironment!
-    var tableView: UITableView!
-    lazy var searchController: UISearchController = {
+    private(set) var environment: AppEnvironment!
+    private var viewTable: ViewTable? {
+        return viewIfLoaded as? ViewTable
+    }
+    private lazy var searchController: UISearchController = {
         let search = UISearchController(searchResultsController: nil)
         search.obscuresBackgroundDuringPresentation = true
         search.searchBar.placeholder = "Search"
@@ -13,15 +15,15 @@ class RepositoriesViewController: UIViewController, NavigationItemController {
         return search
     }()
 
-    var repositories: [Repository] {
+    private var repositories: [Repository] {
         return myState?.repositories ?? []
     }
 
-    var myState: RepositoriesListState? {
-        return environment.store.value.repositories.list(for: uniqueId)
+    private var myState: RepositoriesListState? {
+        return environment.store.value.repositories.item(for: uniqueId)
     }
 
-    private var uniqueId: Int!
+    private(set) var uniqueId: Int!
 
     required init(_ environment: AppEnvironment, _ uniqueId: Int) {
         super.init(nibName: nil, bundle: nil)
@@ -34,20 +36,9 @@ class RepositoriesViewController: UIViewController, NavigationItemController {
     }
 
     override func loadView() {
-        view = UIView(frame: .zero)
-        tableView = UITableView(frame: .zero)
-        tableView.tableFooterView = UIView(frame: .zero)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CELL")
-        view.addSubview(tableView)
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        tableView.dataSource = self
-        tableView.delegate = self
+        view = ViewTable()
+        viewTable?.tableView.dataSource = self
+        viewTable?.tableView.delegate = self
     }
 
     override func viewDidLoad() {
@@ -55,31 +46,20 @@ class RepositoriesViewController: UIViewController, NavigationItemController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
 
-        if environment.store.value.repositories.navigationStack.count > 1 {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
-                                                               style: .plain,
-                                                               target: self,
-                                                               action: #selector(back))
-        }
-        self.environment.store.onChange { [weak self] new, _ in
+        environment.store.onChange { [weak self] new, _ in
             guard let uniqueId = self?.uniqueId,
-                let new = new.repositories.list(for: uniqueId) else { return }
+                let new: RepositoriesListState = new.repositories.item(for: uniqueId) else { return }
             self?.resolve(new)
         }
-        if let uniqueId = myState?.uniqueId, myState?.phrase == nil {
-            environment.store.dispatch(DownloadRepositories(since: 0, isNextPage: false,
-                                                            uniqueId: uniqueId))
-        }
-    }
-
-    @objc private func back() {
-        environment.store.dispatch(PopResults())
+        environment.store.dispatch(DownloadRepositories(since: 0,
+                                                        isNextPage: false,
+                                                        uniqueId: uniqueId))
     }
 
     private func resolve(_ state: RepositoriesListState) {
         title = state.title
         searchController.searchBar.text = state.phrase
-        tableView.reloadData()
+        viewTable?.tableView.reloadData()
     }
 }
 
@@ -97,21 +77,10 @@ extension RepositoriesViewController: UITableViewDataSource, UITableViewDelegate
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == repositories.count - 10 {
-             if let phras = myState?.phrase,
-                let page = myState?.since,
-                let uniqueId = myState?.uniqueId {
-                 environment.store.dispatch(NewSearch(phrase: phras,
-                                                      page: page + 1,
-                                                      isNextPage: true,
-                                                      uniqueId: uniqueId))
-             } else if let since = myState?.since,
-                let uniqueId = myState?.uniqueId {
-                environment.store.dispatch(DownloadRepositories(since: since,
-                                                                isNextPage: true,
-                                                                uniqueId: uniqueId))
-            }
-        }
+        guard let state = myState, indexPath.row == repositories.count - 10 else { return }
+        environment.store.dispatch(DownloadRepositories(since: state.since,
+                                                        isNextPage: true,
+                                                        uniqueId: uniqueId))
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -122,11 +91,8 @@ extension RepositoriesViewController: UITableViewDataSource, UITableViewDelegate
 
 extension RepositoriesViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let phrase = searchBar.text, !phrase.isEmpty, let myState = myState else { return }
-        environment.store.dispatch(NewSearch(phrase: phrase,
-                                             page: 0,
-                                             isNextPage: false,
-                                             uniqueId: myState.uniqueId))
+        guard let phrase = searchBar.text, !phrase.isEmpty else { return }
+        environment.store.dispatch(NewSearch(phrase: phrase))
         searchController.isActive = false
     }
 }

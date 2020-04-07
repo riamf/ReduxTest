@@ -9,9 +9,10 @@ class RepositoryDetailsViewController: UIViewController, NavigationItemControlle
     }
 
     private var repository: Repository? {
-        return environment.store.value.repositories.details(for: uniqueId)?.repository
+        let myState: RepositoryDetailsState? = environment.store.value.repositories.item(for: uniqueId)
+        return myState?.repository
     }
-    private var uniqueId: Int!
+    private(set) var uniqueId: Int!
 
     required init(_ environment: AppEnvironment, _ uniqueId: Int) {
         super.init(nibName: nil, bundle: nil)

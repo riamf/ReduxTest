@@ -78,7 +78,9 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         let navStackDesc = state.repositories.navigationStack.map({ itm -> String in
             var repos = ""
             if let val = itm as? RepositoriesListState {
-                repos += "repositories: \(val.repositories.count), phrase: \(val.phrase ?? "nil")"
+                repos += "repositories: \(val.repositories.count), phrase: \(val.phrase )"
+            } else if let val = itm as? SearchResultsState {
+                repos += "repositories: \(val.repositories.count), phrase: \(val.phrase )"
             }
             return "\(type(of: itm)), \(itm.uniqueId), " + repos + ""
         })
