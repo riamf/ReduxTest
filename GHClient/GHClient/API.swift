@@ -74,6 +74,8 @@ class API {
 }
 
 public protocol GHCLientProtocol {
+    func getRepositories(_ since: Int, _ completion: @escaping (Result<[Repository], Error>) -> Void)
+    func searchRepositories(_ query: String, _ page: Int, _ completion: @escaping (Result<[Repository], Error>) -> Void)
 }
 
 public final class GHClient: GHCLientProtocol {

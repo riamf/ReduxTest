@@ -4,7 +4,7 @@ import SimpleRedux
 
 final class AppEnvironment {
 
-    static let ghClient = GHClient()
+    static let ghClient: GHCLientProtocol = GHClient()
 
     let store: ReduxStore<MainState>
     let useCases: UseCases

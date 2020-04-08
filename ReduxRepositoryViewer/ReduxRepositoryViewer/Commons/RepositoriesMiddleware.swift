@@ -21,7 +21,6 @@ struct RepositoriesMiddleware {
                     }
                 }
             }
-
         }
     }
     static let ghClient: Middleware<MainState> = { dispatch, getState in
@@ -46,4 +45,3 @@ struct RepositoriesMiddleware {
         }
     }
 }
-
