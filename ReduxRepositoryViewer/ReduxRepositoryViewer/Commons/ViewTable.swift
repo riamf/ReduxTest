@@ -12,7 +12,6 @@ class ViewTable: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-
     private func setup() {
         let view = self
         tableView = UITableView(frame: .zero)

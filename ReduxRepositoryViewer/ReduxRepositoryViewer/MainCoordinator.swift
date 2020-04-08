@@ -9,6 +9,9 @@ class MainCoordinator: Coordinator {
     var currentViewController: UIViewController?
     var environment: AppEnvironment
     var window: UIWindow?
+    private var repositoriesNavigation: RepositoriesNavigtion? {
+        return (currentViewController as? TabBarController)?.repositoriesNavigation
+    }
     private var tabBar: TabBarController? {
         return currentViewController as? TabBarController
     }
@@ -43,15 +46,13 @@ class MainCoordinator: Coordinator {
             for idx in (start..<end) {
                 let next = new.repositories.navigationStack[idx]
                 if let ctrl = next.navigationItemControllerType.init(environment, next.uniqueId) as? UIViewController {
-                    (currentViewController as? TabBarController)?
-                    .repositoriesNavigation.pushViewController(ctrl, animated: idx == (end - 1))
+                    repositoriesNavigation?.pushViewController(ctrl, animated: idx == (end - 1))
                 }
             }
         } else if new.repositories.navigationStack.count < old.repositories.navigationStack.count {
             let diff = old.repositories.navigationStack.count - new.repositories.navigationStack.count
             (0..<diff).forEach {
-                (currentViewController as? TabBarController)?
-                    .repositoriesNavigation.popViewController(animated: $0 == (diff - 1))
+                repositoriesNavigation?.popViewController(animated: $0 == (diff - 1))
             }
         }
     }
