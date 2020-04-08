@@ -52,10 +52,10 @@ class SearchResultsViewController: UIViewController, NavigationItemController {
         }
 
         if let phrase = myState?.phrase {
-            environment.store.dispatch(SearchRepositories(page: 0,
-                                                          isNextPage: false,
-                                                          uniqueId: uniqueId,
-                                                          phrase: phrase))
+            environment.useCases.searchRepositories(page: 0,
+                                                    isNextPage: false,
+                                                    uniqueId: uniqueId,
+                                                    phrase: phrase)
         }
     }
 
@@ -67,7 +67,7 @@ class SearchResultsViewController: UIViewController, NavigationItemController {
     }
 
     @objc private func back() {
-        environment.store.dispatch(PopResults())
+        environment.useCases.popResults()
     }
 }
 
@@ -84,22 +84,22 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        environment.store.dispatch(ShowDetails(repository: repositories[indexPath.row]))
+        environment.useCases.showDetails(for: repositories[indexPath.row])
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let state = myState, indexPath.row == repositories.count - 15 else { return }
-        environment.store.dispatch(SearchRepositories(page: 0,
-                                                      isNextPage: true,
-                                                      uniqueId: state.uniqueId,
-                                                      phrase: state.phrase))
+        environment.useCases.searchRepositories(page: state.page + 1,
+                                                isNextPage: true,
+                                                uniqueId: state.uniqueId,
+                                                phrase: state.phrase)
     }
 }
 
 extension SearchResultsViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let phrase = searchBar.text, !phrase.isEmpty else { return }
-        environment.store.dispatch(NewSearch(phrase: phrase))
+        environment.useCases.showNewSearch(for: phrase)
         searchController.isActive = false
     }
 }

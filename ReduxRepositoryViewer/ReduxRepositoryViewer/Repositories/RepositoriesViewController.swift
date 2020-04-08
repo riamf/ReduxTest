@@ -51,9 +51,9 @@ class RepositoriesViewController: UIViewController, NavigationItemController {
                 let new: RepositoriesListState = new.repositories.item(for: uniqueId) else { return }
             self?.resolve(new)
         }
-        environment.store.dispatch(DownloadRepositories(since: 0,
-                                                        isNextPage: false,
-                                                        uniqueId: uniqueId))
+        environment.useCases.downloadRepositories(since: 0,
+                                                  isNextPage: false,
+                                                  uniqueId: uniqueId)
     }
 
     private func resolve(_ state: RepositoriesListState) {
@@ -78,21 +78,21 @@ extension RepositoriesViewController: UITableViewDataSource, UITableViewDelegate
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let state = myState, indexPath.row == repositories.count - 10 else { return }
-        environment.store.dispatch(DownloadRepositories(since: state.since,
-                                                        isNextPage: true,
-                                                        uniqueId: uniqueId))
+        environment.useCases.downloadRepositories(since: state.since,
+                                                  isNextPage: true,
+                                                  uniqueId: uniqueId)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        environment.store.dispatch(ShowDetails(repository: repositories[indexPath.row]))
+        environment.useCases.showDetails(for: repositories[indexPath.row])
     }
 }
 
 extension RepositoriesViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let phrase = searchBar.text, !phrase.isEmpty else { return }
-        environment.store.dispatch(NewSearch(phrase: phrase))
+        environment.useCases.showNewSearch(for: phrase)
         searchController.isActive = false
     }
 }

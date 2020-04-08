@@ -43,7 +43,7 @@ class RepositoryDetailsViewController: UIViewController, NavigationItemControlle
     }
 
     @objc private func back() {
-        environment.store.dispatch(PopDetails())
+        environment.useCases.popDetails()
     }
 }
 
