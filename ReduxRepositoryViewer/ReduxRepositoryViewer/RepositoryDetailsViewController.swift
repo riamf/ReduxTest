@@ -9,10 +9,9 @@ class RepositoryDetailsViewController: UIViewController, NavigationItemControlle
     }
 
     private var repository: Repository? {
-        let myState: RepositoryDetailsState? = environment.store.value.repositories.item(for: uniqueId)
-        return myState?.repository
+        return environment.store.value.repositories.details(for: uniqueId)?.repository
     }
-    private(set) var uniqueId: Int!
+    private var uniqueId: Int!
 
     required init(_ environment: AppEnvironment, _ uniqueId: Int) {
         super.init(nibName: nil, bundle: nil)
@@ -33,10 +32,9 @@ class RepositoryDetailsViewController: UIViewController, NavigationItemControlle
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Back", style: .plain,
                                                                 target: self,
                                                                 action: #selector(back))
-        environment.store.onChange { [weak self, detailsView, repository] _, _ in
+        environment.store.onChange { [weak detailsView, repository] _, _ in
             guard let repository = repository else { return }
             detailsView?.backgroundColor = .white
-            self?.title = repository.name
             detailsView?.identifier.text = "\(repository.id)"
             detailsView?.owner.text = repository.owner.login
             detailsView?.desc.text = repository.description
@@ -44,7 +42,7 @@ class RepositoryDetailsViewController: UIViewController, NavigationItemControlle
     }
 
     @objc private func back() {
-        environment.useCases.popDetails()
+        environment.store.dispatch(PopDetails())
     }
 }
 
