@@ -1,0 +1,795 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		723FA0A123C9DC5900BD9948 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0A023C9DC5900BD9948 /* Redux.swift */; };
+		723FA0A323C9DC8C00BD9948 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0A223C9DC8C00BD9948 /* Actions.swift */; };
+		723FA0A523C9DCC200BD9948 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0A423C9DCC200BD9948 /* State.swift */; };
+		723FA0A723C9DCD800BD9948 /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0A623C9DCD800BD9948 /* SceneState.swift */; };
+		723FA0A923C9DD0400BD9948 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0A823C9DD0400BD9948 /* Coordinator.swift */; };
+		723FA0AC23C9DD4800BD9948 /* TabBarSceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0AB23C9DD4800BD9948 /* TabBarSceneState.swift */; };
+		723FA0AF23C9DD7E00BD9948 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0AE23C9DD7E00BD9948 /* TabBarCoordinator.swift */; };
+		723FA0B123C9DD9600BD9948 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0B023C9DD9600BD9948 /* TabBarController.swift */; };
+		723FA0B323C9E12200BD9948 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0B223C9E12200BD9948 /* Environment.swift */; };
+		723FA0B523C9E13500BD9948 /* UseCaseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0B423C9E13500BD9948 /* UseCaseFactory.swift */; };
+		723FA0B723C9E15200BD9948 /* Middlewear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0B623C9E15200BD9948 /* Middlewear.swift */; };
+		723FA0C123CA00D300BD9948 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0C023CA00D300BD9948 /* HomeViewController.swift */; };
+		723FA0C323CA013200BD9948 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0C223CA013200BD9948 /* HomeCoordinator.swift */; };
+		723FA0C523CA017E00BD9948 /* HomeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0C423CA017E00BD9948 /* HomeState.swift */; };
+		723FA0C823CA041D00BD9948 /* HomeNavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0C723CA041D00BD9948 /* HomeNavigationState.swift */; };
+		723FA0CA23CA045200BD9948 /* HomeNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0C923CA045200BD9948 /* HomeNavigationCoordinator.swift */; };
+		723FA0CC23CA04AD00BD9948 /* HomeNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0CB23CA04AD00BD9948 /* HomeNavigationViewController.swift */; };
+		723FA0D023CA05AB00BD9948 /* ProfileNaviagationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0CF23CA05AB00BD9948 /* ProfileNaviagationState.swift */; };
+		723FA0D223CA05D300BD9948 /* ProfileNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0D123CA05D300BD9948 /* ProfileNavigationCoordinator.swift */; };
+		723FA0D423CA060700BD9948 /* ProfileNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0D323CA060700BD9948 /* ProfileNavigationController.swift */; };
+		723FA0D623CA07F500BD9948 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0D523CA07F500BD9948 /* ProfileViewController.swift */; };
+		723FA0D823CA082400BD9948 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0D723CA082400BD9948 /* ProfileCoordinator.swift */; };
+		723FA0DA23CA087700BD9948 /* ProfileState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0D923CA087700BD9948 /* ProfileState.swift */; };
+		723FA0DD23CA125C00BD9948 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0DC23CA125C00BD9948 /* API.swift */; };
+		723FA0E023CA12DB00BD9948 /* FilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0DF23CA12DB00BD9948 /* FilterState.swift */; };
+		723FA0E323CA149100BD9948 /* SearchResultsMiddlewear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0E223CA149100BD9948 /* SearchResultsMiddlewear.swift */; };
+		723FA0E523CA1D7100BD9948 /* SearchResultsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0E423CA1D7100BD9948 /* SearchResultsState.swift */; };
+		723FA0E723CA1D8C00BD9948 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0E623CA1D8C00BD9948 /* SearchResultsViewController.swift */; };
+		723FA0E923CA1DBB00BD9948 /* SearchResultsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0E823CA1DBB00BD9948 /* SearchResultsCoordinator.swift */; };
+		723FA0EB23CB0DB200BD9948 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0EA23CB0DB200BD9948 /* FiltersViewController.swift */; };
+		723FA0ED23CB0DDD00BD9948 /* FiltersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0EC23CB0DDD00BD9948 /* FiltersCoordinator.swift */; };
+		723FA0EF23CB0E5000BD9948 /* FilterSceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0EE23CB0E5000BD9948 /* FilterSceneState.swift */; };
+		723FA0F123CF87D900BD9948 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0F023CF87D900BD9948 /* FiltersView.swift */; };
+		723FA0F323CF95C500BD9948 /* FiltersMiddlewear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FA0F223CF95C500BD9948 /* FiltersMiddlewear.swift */; };
+		72C0981B23C9D2D400D3B73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0981A23C9D2D400D3B73F /* AppDelegate.swift */; };
+		72C0981F23C9D2D400D3B73F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0981E23C9D2D400D3B73F /* ViewController.swift */; };
+		72C0982223C9D2D400D3B73F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72C0982023C9D2D400D3B73F /* Main.storyboard */; };
+		72C0982423C9D2D800D3B73F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72C0982323C9D2D800D3B73F /* Assets.xcassets */; };
+		72C0982723C9D2D800D3B73F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72C0982523C9D2D800D3B73F /* LaunchScreen.storyboard */; };
+		72C0983223C9D2D800D3B73F /* MuchReduxWowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0983123C9D2D800D3B73F /* MuchReduxWowTests.swift */; };
+		72C0983D23C9D2D800D3B73F /* MuchReduxWowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0983C23C9D2D800D3B73F /* MuchReduxWowUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		72C0982E23C9D2D800D3B73F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72C0980F23C9D2D400D3B73F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 72C0981623C9D2D400D3B73F;
+			remoteInfo = MuchReduxWow;
+		};
+		72C0983923C9D2D800D3B73F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72C0980F23C9D2D400D3B73F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 72C0981623C9D2D400D3B73F;
+			remoteInfo = MuchReduxWow;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		723FA0A023C9DC5900BD9948 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
+		723FA0A223C9DC8C00BD9948 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		723FA0A423C9DCC200BD9948 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		723FA0A623C9DCD800BD9948 /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
+		723FA0A823C9DD0400BD9948 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		723FA0AB23C9DD4800BD9948 /* TabBarSceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSceneState.swift; sourceTree = "<group>"; };
+		723FA0AE23C9DD7E00BD9948 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		723FA0B023C9DD9600BD9948 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		723FA0B223C9E12200BD9948 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		723FA0B423C9E13500BD9948 /* UseCaseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseFactory.swift; sourceTree = "<group>"; };
+		723FA0B623C9E15200BD9948 /* Middlewear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middlewear.swift; sourceTree = "<group>"; };
+		723FA0C023CA00D300BD9948 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		723FA0C223CA013200BD9948 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		723FA0C423CA017E00BD9948 /* HomeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeState.swift; sourceTree = "<group>"; };
+		723FA0C723CA041D00BD9948 /* HomeNavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationState.swift; sourceTree = "<group>"; };
+		723FA0C923CA045200BD9948 /* HomeNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationCoordinator.swift; sourceTree = "<group>"; };
+		723FA0CB23CA04AD00BD9948 /* HomeNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationViewController.swift; sourceTree = "<group>"; };
+		723FA0CF23CA05AB00BD9948 /* ProfileNaviagationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNaviagationState.swift; sourceTree = "<group>"; };
+		723FA0D123CA05D300BD9948 /* ProfileNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationCoordinator.swift; sourceTree = "<group>"; };
+		723FA0D323CA060700BD9948 /* ProfileNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationController.swift; sourceTree = "<group>"; };
+		723FA0D523CA07F500BD9948 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		723FA0D723CA082400BD9948 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		723FA0D923CA087700BD9948 /* ProfileState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileState.swift; sourceTree = "<group>"; };
+		723FA0DC23CA125C00BD9948 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		723FA0DF23CA12DB00BD9948 /* FilterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterState.swift; sourceTree = "<group>"; };
+		723FA0E223CA149100BD9948 /* SearchResultsMiddlewear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsMiddlewear.swift; sourceTree = "<group>"; };
+		723FA0E423CA1D7100BD9948 /* SearchResultsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsState.swift; sourceTree = "<group>"; };
+		723FA0E623CA1D8C00BD9948 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		723FA0E823CA1DBB00BD9948 /* SearchResultsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsCoordinator.swift; sourceTree = "<group>"; };
+		723FA0EA23CB0DB200BD9948 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
+		723FA0EC23CB0DDD00BD9948 /* FiltersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersCoordinator.swift; sourceTree = "<group>"; };
+		723FA0EE23CB0E5000BD9948 /* FilterSceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSceneState.swift; sourceTree = "<group>"; };
+		723FA0F023CF87D900BD9948 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
+		723FA0F223CF95C500BD9948 /* FiltersMiddlewear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersMiddlewear.swift; sourceTree = "<group>"; };
+		72C0981723C9D2D400D3B73F /* MuchReduxWow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuchReduxWow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		72C0981A23C9D2D400D3B73F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		72C0981E23C9D2D400D3B73F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		72C0982123C9D2D400D3B73F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		72C0982323C9D2D800D3B73F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		72C0982623C9D2D800D3B73F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		72C0982823C9D2D800D3B73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72C0982D23C9D2D800D3B73F /* MuchReduxWowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuchReduxWowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		72C0983123C9D2D800D3B73F /* MuchReduxWowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuchReduxWowTests.swift; sourceTree = "<group>"; };
+		72C0983323C9D2D800D3B73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72C0983823C9D2D800D3B73F /* MuchReduxWowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuchReduxWowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		72C0983C23C9D2D800D3B73F /* MuchReduxWowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuchReduxWowUITests.swift; sourceTree = "<group>"; };
+		72C0983E23C9D2D800D3B73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		72C0981423C9D2D400D3B73F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72C0982A23C9D2D800D3B73F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72C0983523C9D2D800D3B73F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		723FA09F23C9DC3900BD9948 /* Redux */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0A023C9DC5900BD9948 /* Redux.swift */,
+				723FA0A223C9DC8C00BD9948 /* Actions.swift */,
+				723FA0A423C9DCC200BD9948 /* State.swift */,
+				723FA0A623C9DCD800BD9948 /* SceneState.swift */,
+				723FA0B223C9E12200BD9948 /* Environment.swift */,
+				723FA0B423C9E13500BD9948 /* UseCaseFactory.swift */,
+				723FA0B623C9E15200BD9948 /* Middlewear.swift */,
+			);
+			path = Redux;
+			sourceTree = "<group>";
+		};
+		723FA0AD23C9DD6F00BD9948 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0AE23C9DD7E00BD9948 /* TabBarCoordinator.swift */,
+				723FA0B023C9DD9600BD9948 /* TabBarController.swift */,
+				723FA0AB23C9DD4800BD9948 /* TabBarSceneState.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		723FA0BF23CA00C000BD9948 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0E123CA147C00BD9948 /* SearchResults */,
+				723FA0C623CA040F00BD9948 /* Navigation */,
+				723FA0C023CA00D300BD9948 /* HomeViewController.swift */,
+				723FA0C223CA013200BD9948 /* HomeCoordinator.swift */,
+				723FA0C423CA017E00BD9948 /* HomeState.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		723FA0C623CA040F00BD9948 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0C723CA041D00BD9948 /* HomeNavigationState.swift */,
+				723FA0C923CA045200BD9948 /* HomeNavigationCoordinator.swift */,
+				723FA0CB23CA04AD00BD9948 /* HomeNavigationViewController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		723FA0CD23CA059700BD9948 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0CE23CA059C00BD9948 /* Navigation */,
+				723FA0D523CA07F500BD9948 /* ProfileViewController.swift */,
+				723FA0D723CA082400BD9948 /* ProfileCoordinator.swift */,
+				723FA0D923CA087700BD9948 /* ProfileState.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		723FA0CE23CA059C00BD9948 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0CF23CA05AB00BD9948 /* ProfileNaviagationState.swift */,
+				723FA0D123CA05D300BD9948 /* ProfileNavigationCoordinator.swift */,
+				723FA0D323CA060700BD9948 /* ProfileNavigationController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		723FA0DB23CA11EC00BD9948 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0DC23CA125C00BD9948 /* API.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		723FA0DE23CA12CF00BD9948 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0DF23CA12DB00BD9948 /* FilterState.swift */,
+				723FA0EA23CB0DB200BD9948 /* FiltersViewController.swift */,
+				723FA0EC23CB0DDD00BD9948 /* FiltersCoordinator.swift */,
+				723FA0EE23CB0E5000BD9948 /* FilterSceneState.swift */,
+				723FA0F023CF87D900BD9948 /* FiltersView.swift */,
+				723FA0F223CF95C500BD9948 /* FiltersMiddlewear.swift */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		723FA0E123CA147C00BD9948 /* SearchResults */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0E223CA149100BD9948 /* SearchResultsMiddlewear.swift */,
+				723FA0E423CA1D7100BD9948 /* SearchResultsState.swift */,
+				723FA0E623CA1D8C00BD9948 /* SearchResultsViewController.swift */,
+				723FA0E823CA1DBB00BD9948 /* SearchResultsCoordinator.swift */,
+			);
+			path = SearchResults;
+			sourceTree = "<group>";
+		};
+		72C0980E23C9D2D400D3B73F = {
+			isa = PBXGroup;
+			children = (
+				72C0981923C9D2D400D3B73F /* MuchReduxWow */,
+				72C0983023C9D2D800D3B73F /* MuchReduxWowTests */,
+				72C0983B23C9D2D800D3B73F /* MuchReduxWowUITests */,
+				72C0981823C9D2D400D3B73F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		72C0981823C9D2D400D3B73F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				72C0981723C9D2D400D3B73F /* MuchReduxWow.app */,
+				72C0982D23C9D2D800D3B73F /* MuchReduxWowTests.xctest */,
+				72C0983823C9D2D800D3B73F /* MuchReduxWowUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		72C0981923C9D2D400D3B73F /* MuchReduxWow */ = {
+			isa = PBXGroup;
+			children = (
+				723FA0DE23CA12CF00BD9948 /* Filters */,
+				723FA0DB23CA11EC00BD9948 /* Network */,
+				723FA0CD23CA059700BD9948 /* Profile */,
+				723FA0BF23CA00C000BD9948 /* Home */,
+				723FA0AD23C9DD6F00BD9948 /* TabBar */,
+				723FA09F23C9DC3900BD9948 /* Redux */,
+				72C0981A23C9D2D400D3B73F /* AppDelegate.swift */,
+				72C0981E23C9D2D400D3B73F /* ViewController.swift */,
+				723FA0A823C9DD0400BD9948 /* Coordinator.swift */,
+				72C0982023C9D2D400D3B73F /* Main.storyboard */,
+				72C0982323C9D2D800D3B73F /* Assets.xcassets */,
+				72C0982523C9D2D800D3B73F /* LaunchScreen.storyboard */,
+				72C0982823C9D2D800D3B73F /* Info.plist */,
+			);
+			path = MuchReduxWow;
+			sourceTree = "<group>";
+		};
+		72C0983023C9D2D800D3B73F /* MuchReduxWowTests */ = {
+			isa = PBXGroup;
+			children = (
+				72C0983123C9D2D800D3B73F /* MuchReduxWowTests.swift */,
+				72C0983323C9D2D800D3B73F /* Info.plist */,
+			);
+			path = MuchReduxWowTests;
+			sourceTree = "<group>";
+		};
+		72C0983B23C9D2D800D3B73F /* MuchReduxWowUITests */ = {
+			isa = PBXGroup;
+			children = (
+				72C0983C23C9D2D800D3B73F /* MuchReduxWowUITests.swift */,
+				72C0983E23C9D2D800D3B73F /* Info.plist */,
+			);
+			path = MuchReduxWowUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		72C0981623C9D2D400D3B73F /* MuchReduxWow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72C0984123C9D2D800D3B73F /* Build configuration list for PBXNativeTarget "MuchReduxWow" */;
+			buildPhases = (
+				72C0981323C9D2D400D3B73F /* Sources */,
+				72C0981423C9D2D400D3B73F /* Frameworks */,
+				72C0981523C9D2D400D3B73F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MuchReduxWow;
+			productName = MuchReduxWow;
+			productReference = 72C0981723C9D2D400D3B73F /* MuchReduxWow.app */;
+			productType = "com.apple.product-type.application";
+		};
+		72C0982C23C9D2D800D3B73F /* MuchReduxWowTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72C0984423C9D2D800D3B73F /* Build configuration list for PBXNativeTarget "MuchReduxWowTests" */;
+			buildPhases = (
+				72C0982923C9D2D800D3B73F /* Sources */,
+				72C0982A23C9D2D800D3B73F /* Frameworks */,
+				72C0982B23C9D2D800D3B73F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				72C0982F23C9D2D800D3B73F /* PBXTargetDependency */,
+			);
+			name = MuchReduxWowTests;
+			productName = MuchReduxWowTests;
+			productReference = 72C0982D23C9D2D800D3B73F /* MuchReduxWowTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		72C0983723C9D2D800D3B73F /* MuchReduxWowUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72C0984723C9D2D800D3B73F /* Build configuration list for PBXNativeTarget "MuchReduxWowUITests" */;
+			buildPhases = (
+				72C0983423C9D2D800D3B73F /* Sources */,
+				72C0983523C9D2D800D3B73F /* Frameworks */,
+				72C0983623C9D2D800D3B73F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				72C0983A23C9D2D800D3B73F /* PBXTargetDependency */,
+			);
+			name = MuchReduxWowUITests;
+			productName = MuchReduxWowUITests;
+			productReference = 72C0983823C9D2D800D3B73F /* MuchReduxWowUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		72C0980F23C9D2D400D3B73F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = alpha;
+				TargetAttributes = {
+					72C0981623C9D2D400D3B73F = {
+						CreatedOnToolsVersion = 11.3;
+					};
+					72C0982C23C9D2D800D3B73F = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 72C0981623C9D2D400D3B73F;
+					};
+					72C0983723C9D2D800D3B73F = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 72C0981623C9D2D400D3B73F;
+					};
+				};
+			};
+			buildConfigurationList = 72C0981223C9D2D400D3B73F /* Build configuration list for PBXProject "MuchReduxWow" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 72C0980E23C9D2D400D3B73F;
+			productRefGroup = 72C0981823C9D2D400D3B73F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				72C0981623C9D2D400D3B73F /* MuchReduxWow */,
+				72C0982C23C9D2D800D3B73F /* MuchReduxWowTests */,
+				72C0983723C9D2D800D3B73F /* MuchReduxWowUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		72C0981523C9D2D400D3B73F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72C0982723C9D2D800D3B73F /* LaunchScreen.storyboard in Resources */,
+				72C0982423C9D2D800D3B73F /* Assets.xcassets in Resources */,
+				72C0982223C9D2D400D3B73F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72C0982B23C9D2D800D3B73F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72C0983623C9D2D800D3B73F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		72C0981323C9D2D400D3B73F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				723FA0A923C9DD0400BD9948 /* Coordinator.swift in Sources */,
+				723FA0B323C9E12200BD9948 /* Environment.swift in Sources */,
+				723FA0A323C9DC8C00BD9948 /* Actions.swift in Sources */,
+				723FA0C123CA00D300BD9948 /* HomeViewController.swift in Sources */,
+				723FA0CA23CA045200BD9948 /* HomeNavigationCoordinator.swift in Sources */,
+				723FA0B123C9DD9600BD9948 /* TabBarController.swift in Sources */,
+				723FA0E523CA1D7100BD9948 /* SearchResultsState.swift in Sources */,
+				72C0981F23C9D2D400D3B73F /* ViewController.swift in Sources */,
+				72C0981B23C9D2D400D3B73F /* AppDelegate.swift in Sources */,
+				723FA0DD23CA125C00BD9948 /* API.swift in Sources */,
+				723FA0A123C9DC5900BD9948 /* Redux.swift in Sources */,
+				723FA0A723C9DCD800BD9948 /* SceneState.swift in Sources */,
+				723FA0AC23C9DD4800BD9948 /* TabBarSceneState.swift in Sources */,
+				723FA0E023CA12DB00BD9948 /* FilterState.swift in Sources */,
+				723FA0EF23CB0E5000BD9948 /* FilterSceneState.swift in Sources */,
+				723FA0EB23CB0DB200BD9948 /* FiltersViewController.swift in Sources */,
+				723FA0DA23CA087700BD9948 /* ProfileState.swift in Sources */,
+				723FA0E323CA149100BD9948 /* SearchResultsMiddlewear.swift in Sources */,
+				723FA0E923CA1DBB00BD9948 /* SearchResultsCoordinator.swift in Sources */,
+				723FA0C323CA013200BD9948 /* HomeCoordinator.swift in Sources */,
+				723FA0B723C9E15200BD9948 /* Middlewear.swift in Sources */,
+				723FA0F323CF95C500BD9948 /* FiltersMiddlewear.swift in Sources */,
+				723FA0AF23C9DD7E00BD9948 /* TabBarCoordinator.swift in Sources */,
+				723FA0E723CA1D8C00BD9948 /* SearchResultsViewController.swift in Sources */,
+				723FA0A523C9DCC200BD9948 /* State.swift in Sources */,
+				723FA0F123CF87D900BD9948 /* FiltersView.swift in Sources */,
+				723FA0D623CA07F500BD9948 /* ProfileViewController.swift in Sources */,
+				723FA0D823CA082400BD9948 /* ProfileCoordinator.swift in Sources */,
+				723FA0CC23CA04AD00BD9948 /* HomeNavigationViewController.swift in Sources */,
+				723FA0D223CA05D300BD9948 /* ProfileNavigationCoordinator.swift in Sources */,
+				723FA0D423CA060700BD9948 /* ProfileNavigationController.swift in Sources */,
+				723FA0D023CA05AB00BD9948 /* ProfileNaviagationState.swift in Sources */,
+				723FA0B523C9E13500BD9948 /* UseCaseFactory.swift in Sources */,
+				723FA0C823CA041D00BD9948 /* HomeNavigationState.swift in Sources */,
+				723FA0ED23CB0DDD00BD9948 /* FiltersCoordinator.swift in Sources */,
+				723FA0C523CA017E00BD9948 /* HomeState.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72C0982923C9D2D800D3B73F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72C0983223C9D2D800D3B73F /* MuchReduxWowTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72C0983423C9D2D800D3B73F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72C0983D23C9D2D800D3B73F /* MuchReduxWowUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		72C0982F23C9D2D800D3B73F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 72C0981623C9D2D400D3B73F /* MuchReduxWow */;
+			targetProxy = 72C0982E23C9D2D800D3B73F /* PBXContainerItemProxy */;
+		};
+		72C0983A23C9D2D800D3B73F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 72C0981623C9D2D400D3B73F /* MuchReduxWow */;
+			targetProxy = 72C0983923C9D2D800D3B73F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		72C0982023C9D2D400D3B73F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72C0982123C9D2D400D3B73F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		72C0982523C9D2D800D3B73F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72C0982623C9D2D800D3B73F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		72C0983F23C9D2D800D3B73F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		72C0984023C9D2D800D3B73F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		72C0984223C9D2D800D3B73F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MuchReduxWow/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = beta.MuchReduxWow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		72C0984323C9D2D800D3B73F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MuchReduxWow/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = beta.MuchReduxWow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		72C0984523C9D2D800D3B73F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MuchReduxWowTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = beta.MuchReduxWowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MuchReduxWow.app/MuchReduxWow";
+			};
+			name = Debug;
+		};
+		72C0984623C9D2D800D3B73F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MuchReduxWowTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = beta.MuchReduxWowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MuchReduxWow.app/MuchReduxWow";
+			};
+			name = Release;
+		};
+		72C0984823C9D2D800D3B73F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MuchReduxWowUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = beta.MuchReduxWowUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MuchReduxWow;
+			};
+			name = Debug;
+		};
+		72C0984923C9D2D800D3B73F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MuchReduxWowUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = beta.MuchReduxWowUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MuchReduxWow;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		72C0981223C9D2D400D3B73F /* Build configuration list for PBXProject "MuchReduxWow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72C0983F23C9D2D800D3B73F /* Debug */,
+				72C0984023C9D2D800D3B73F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72C0984123C9D2D800D3B73F /* Build configuration list for PBXNativeTarget "MuchReduxWow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72C0984223C9D2D800D3B73F /* Debug */,
+				72C0984323C9D2D800D3B73F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72C0984423C9D2D800D3B73F /* Build configuration list for PBXNativeTarget "MuchReduxWowTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72C0984523C9D2D800D3B73F /* Debug */,
+				72C0984623C9D2D800D3B73F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72C0984723C9D2D800D3B73F /* Build configuration list for PBXNativeTarget "MuchReduxWowUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72C0984823C9D2D800D3B73F /* Debug */,
+				72C0984923C9D2D800D3B73F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 72C0980F23C9D2D400D3B73F /* Project object */;
+}
